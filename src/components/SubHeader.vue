@@ -6,7 +6,7 @@
                    <v-btn class="primary" color="#C70925 !important">Make a New Grievance</v-btn>
             </v-col>
             <v-col class="col2style">
-                <v-btn text small >Login</v-btn>
+                <v-btn text small ><router-link to="/login"> Login </router-link></v-btn>
                 <v-btn text small >Register</v-btn>
             </v-col>
         </v-row>

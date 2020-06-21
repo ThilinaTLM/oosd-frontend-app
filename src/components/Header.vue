@@ -1,35 +1,37 @@
 <template>
-  <v-container class="container">
+ <v-container fluid style="padding:0px">
       <v-row>
-         <v-col class="pa-1">
-            <v-img
+         <v-col align="left" justify="left">
+            <v-img 
             :src="require('../assets/main-gov.png')"
             contain
-            height="80px"/>
+            height="80px"/> 
         </v-col>
-        <v-col class="pa-3">
-            <v-row> 
+        
+        <v-col style="display:inline-block">
+            <v-row align="center" justify="center"> 
             <h1>Galle District</h1>
             </v-row>
-            <v-row> 
+            <v-row align="center" justify="center"> 
             <h2>Public Grievances </h2>
             </v-row>
         </v-col>
-        <v-col class="pa-1">
-            <v-row>
+        <v-col>
+            <v-row align="center" justify="center">
                 <h3>Visit Galle District Secretariat</h3>
             </v-row>
-            <v-row>
-              <v-col>
+            <v-row >
+              <v-col align="center" justify="center" style="padding-left:35px">
                   Sinhala
             </v-col>
-            <v-col>
+            <v-col align="center" justify="center">
                 Tamil
             </v-col>
             </v-row>
         </v-col>
       </v-row> 
   </v-container>
+
 </template>
 
 <script>
@@ -41,8 +43,9 @@ export default Vue.extend({
 </script>
 
 <style scopped>
-.container {  
+.container-1 {  
     background-color:#F9F6F3;
+    
 }
 
 h1 {
@@ -54,4 +57,8 @@ h2{
     margin:0;
     font-size: 1em;
 }
+
 </style>
+
+
+

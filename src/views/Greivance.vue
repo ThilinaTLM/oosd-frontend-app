@@ -1,37 +1,41 @@
 <template>
 <v-container  fluid style="padding:0px; height:100%">
-  <LoginHeader />
+  <GrievanceHeader />
 <v-container class="mainContainer">
   <ValidationObserver ref="observer" v-slot="{ /*validate, reset */}">
     <form>
-      <ValidationProvider v-slot="{ errors }" name="Name" rules="">
+      <ValidationProvider v-slot="{ errors }" name="Grievance in Brief" rules="">
         <v-text-field
-          v-model="name"
-          :counter="10"
+          v-model="complaintbrief"
+          :counter="30"
           :error-messages="errors"
-          label="NIC number / Email address"
+          label="Grievance in Brief"
           required
         ></v-text-field>
       </ValidationProvider>
-      <ValidationProvider v-slot="{ errors }" name="Password" rules="">
-        <v-text-field
-          v-model="email"
+      <ValidationProvider v-slot="{ errors }" name="NIC Number" rules="">
+        <v-textarea
+          v-model="nic"
           :error-messages="errors"
-          label="Password"
+          label="Grievance In Detail"
           required
-        ></v-text-field>
+        ></v-textarea>
       </ValidationProvider>
-      <v-btn class="mr-4" style="background-color:#F8C031; width:20%" @click="submit">Login</v-btn>
-      <div style="padding:10px">Not a current user? <span style="font-weight:bold;"><router-link to="/register" style="text-decoration:none; color:black"> Register Now </router-link></span> </div> 
+      <v-file-input
+      label="Upload Instances"
+      >
+      </v-file-input>
+      <v-btn class="mr-4" style="background-color:#F8C031; width:40%" @click="submit">Submit Grievance</v-btn>
     </form>
   </ValidationObserver>
   </v-container>
   </v-container>
-</template>
+</template>  
+
 
 <script>
   import Vue from 'vue';
-  import LoginHeader from '../components/LoginHeader.vue';
+  import GrievanceHeader from '../components/GrievanceHeader.vue';
   import { required, email, max } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
@@ -56,7 +60,7 @@
     components: {
       ValidationProvider,
       ValidationObserver,
-      LoginHeader
+      GrievanceHeader
     },
     data: () => ({
       name: '',
@@ -86,7 +90,7 @@
   }
 </script>
 
-<style scoped>
+<style  scoped>
 
 .mainContainer{
   max-width: 50%;
@@ -95,8 +99,9 @@
   text-align: center;
   background-color:rgba(248, 192, 49, 0.25) ;
   height: 90%;
-
+  margin-bottom: 2%;
 }
+
 
 
 

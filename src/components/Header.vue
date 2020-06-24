@@ -1,13 +1,15 @@
 <template>
  <v-container fluid style="padding:0px">
       <v-row>
-         <v-col align="left" justify="left">
+         <v-col>
+           <router-link to="/">
             <v-img 
             :src="require('../assets/main-gov.png')"
             contain
             height="80px"/> 
+             </router-link>
         </v-col>
-        
+         
         <v-col style="display:inline-block">
             <v-row align="center" justify="center"> 
             <h1>Galle District</h1>

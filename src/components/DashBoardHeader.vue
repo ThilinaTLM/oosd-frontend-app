@@ -1,22 +1,26 @@
 <template>
 
-    <v-container fluid class="subheader" style="padding:0px ; margin:0px">
+    <v-container fluid class="loginheader" style="padding:0px ; margin:0px">
         <v-row style="margin:0px; height:50px">
             <v-col class="col1style" >
                     <router-link style="text-decoration:none" to="/grievance"> 
                    <v-btn class="primary" color="#C70925 !important">Tell The Grievance</v-btn>
                     </router-link>
             </v-col>
-            <v-col class="col2style">
-                <router-link class="navlinks" to="/login"><v-btn text small > Login </v-btn></router-link>
-                <router-link class="navlinks" to="/register"><v-btn text small >Register</v-btn></router-link>
+            <v-col style="text-align:center; font-weight:bold">
+                Grievance Dashboard
             </v-col>
+            <v-col class="col2style" style="padding:5px">
+            <v-avatar height="40px" width="40px">
+                <img
+                    src="https://cdn.vuetifyjs.com/images/john.jpg"
+                alt="User"
+                
+                 >
+                </v-avatar>
+                </v-col>
         </v-row>
-
     </v-container>
-
-
-
 
 </template>
 
@@ -24,7 +28,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: "SubHeader"  
+  name: "DashboardHeader"  
 })
 
 </script>
@@ -33,7 +37,7 @@ export default Vue.extend({
 <style scoped>
 
 
-.subheader{
+.loginheader{
     height: 50px;
     background-color: #F8C031;
 }
@@ -52,10 +56,9 @@ export default Vue.extend({
 }
 
 
-.navlinks{
+.navlink{
     text-decoration:none; 
     color:black
 }
-
 
 </style>

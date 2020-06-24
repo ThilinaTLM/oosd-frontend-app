@@ -1,9 +1,11 @@
 <template>
 <v-app>
     <Header />
-    <SubHeader />
-    <Home />
-  <Footer />
+    <router-view></router-view>
+    <v-container fluid>
+      <Footer />
+    </v-container>
+  
 </v-app>
 </template>
 
@@ -11,7 +13,7 @@
 import Vue from 'vue';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import SubHeader from './components/SubHeader.vue';
+
 import Home from './views/Home.vue';
 
 export default Vue.extend({
@@ -20,7 +22,7 @@ export default Vue.extend({
   components: {
     Header,
     Footer,
-    SubHeader,
+   
     Home
   },
 

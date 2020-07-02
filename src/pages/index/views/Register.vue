@@ -93,7 +93,7 @@
 
 <script>
   import Vue from 'vue';
-  import RegisterHeader from '../components/RegHeader.vue';
+  import RegisterHeader from '../../../components/RegHeader.vue';
   import { required, email, max } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 

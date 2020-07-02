@@ -31,7 +31,7 @@
 
 <script>
   import Vue from 'vue';
-  import LoginHeader from '../components/LoginHeader.vue';
+  import LoginHeader from '../../../components/LoginHeader.vue';
   import { required, email, max } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 

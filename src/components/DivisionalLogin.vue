@@ -1,41 +1,47 @@
 <template>
-<v-container  fluid style="padding:0px; height:100%">
-  <GrievanceHeader />
+<v-container  fluid style="padding:0px; ">
+  
 <v-container class="mainContainer">
   <ValidationObserver ref="observer" v-slot="{ /*validate, reset */}">
     <form>
-      <ValidationProvider v-slot="{ errors }" name="Grievance in Brief" rules="">
+      <ValidationProvider v-slot="{ errors }" name="Name" rules="">
+        
         <v-text-field
-          v-model="complaintbrief"
-          :counter="30"
+          v-model="name"
+    
           :error-messages="errors"
-          label="Grievance in Brief"
+          label="Username / Email address"
           required
         ></v-text-field>
       </ValidationProvider>
-      <ValidationProvider v-slot="{ errors }" name="NIC Number" rules="">
-        <v-textarea
-          v-model="nic"
+     
+      <ValidationProvider v-slot="{ errors }" name="Password" rules="">
+        <v-text-field
+          v-model="email"
           :error-messages="errors"
-          label="Grievance In Detail"
+          label="Password"
           required
-        ></v-textarea>
+        ></v-text-field>
       </ValidationProvider>
-      <v-file-input
-      label="Upload Instances"
-      >
-      </v-file-input>
-      <v-btn class="mr-4" style="background-color:#F8C031; width:40%" @click="submit">Submit Grievance</v-btn>
+    <v-layout align-center>
+        <v-flex xs12 sm6 d-flex>
+        <v-select
+          :items="items"
+          label="Divisional Secretariat"
+        ></v-select>
+      </v-flex>
+    </v-layout>
+      <v-btn class="mr-4" style="background-color:#F8C031; width:20%" @click="submit">Login</v-btn>
+      
     </form>
   </ValidationObserver>
   </v-container>
   </v-container>
-</template>  
-
+</template>
 
 <script>
   import Vue from 'vue';
-  import GrievanceHeader from '../components/GrievanceHeader.vue';
+  import LoginHeader from './LoginHeader.vue';
   import { required, email, max } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
 
@@ -60,17 +66,32 @@
     components: {
       ValidationProvider,
       ValidationObserver,
-      GrievanceHeader
+      LoginHeader
     },
     data: () => ({
       name: '',
       email: '',
       select: null,
       items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
+        'Kadawath Sathara',
+        'Baddegama',
+        'Hikkaduwa',
+        'Walivitiya',
+        'Alpitiya',
+        'Gonapinuwala',
+        'Karandeniya',
+        'Thawalama',
+        'Bope Poddala',
+        'Balapitiya',
+        'Habaraduwa',
+        'Imaduwa',
+        'Akmeemana',
+        'Yakkalamulla',
+        'Nagoda',
+        'Ambalangoda',
+        'Neluwa',
+        'Niyagama',
+        'Benthota'
       ],
       checkbox: null,
     }),
@@ -90,18 +111,17 @@
   }
 </script>
 
-<style  scoped>
+<style scoped>
 
 .mainContainer{
-  max-width: 50%;
+  
   margin: 0px auto;
   padding: 5%;
   text-align: center;
   background-color:rgba(248, 192, 49, 0.25) ;
-  height: 90%;
-  margin-bottom: 2%;
-}
+  
 
+}
 
 
 

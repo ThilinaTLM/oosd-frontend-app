@@ -13,11 +13,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import SubHeader from '../components/SubHeader.vue';
-import Carousel from '../components/Carousel.vue';
-import CounterBar from '../components/CounterBar.vue';
-import Description from '../components/Description.vue';
-import Description2 from '../components/Description2.vue';
+import SubHeader from '../../../components/SubHeader.vue';
+import Carousel from '../../../components/Carousel.vue';
+import CounterBar from '../../../components/CounterBar.vue';
+import Description from '../../../components/Description.vue';
+import Description2 from '../../..//components/Description2.vue';
 export default {
   name: 'Home',
   components: {

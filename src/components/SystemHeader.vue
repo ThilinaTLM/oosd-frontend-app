@@ -15,7 +15,7 @@
             <h1>Galle District</h1>
             </v-row>
             <v-row align="center" justify="center"> 
-            <h2>Public Grievances </h2>
+            <h2>Public Grievance Management System </h2>
             </v-row>
         </v-col>
         <v-col>

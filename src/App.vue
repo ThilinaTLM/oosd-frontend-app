@@ -1,7 +1,7 @@
 <template>
   <div>
     <keep-alive>
-      <component :is="layout" >
+      <component :is="layout">
         <router-view :layout.sync="layout"></router-view>
       </component>
     </keep-alive>

@@ -1,20 +1,39 @@
 <template>
-  <div>
-    <LoginForm title="User Login"/>
-  </div>
+  <v-app>
+    <v-app-bar
+            app
+            collapse
+            flat
+            color="primary"
+    >
+      <HomeButton/>
+    </v-app-bar>
+
+    <v-main class="bg">
+      <v-container
+              fluid
+              class="fill-height"
+      >
+        <v-spacer/>
+        <LoginForm title="User Login"/>
+        <v-spacer/>
+
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-  import CenterFormLayout from "../layouts/CenterFormLayout.vue";
   import LoginForm from "../components/LoginForm.vue";
+  import HomeButton from "@/components/HomeButton";
+  import Home from "@/views/Home";
 
   export default {
     name: 'Login',
     components: {
-      LoginForm
-    },
-    created() {
-      this.$emit('update:layout', CenterFormLayout )
+      Home,
+      LoginForm,
+      HomeButton
     }
   }
 </script>

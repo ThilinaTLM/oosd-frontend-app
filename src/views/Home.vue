@@ -1,19 +1,49 @@
 <template>
-  <div class="home">
-    <h3>CMS - OOSD</h3>
-    <br>
-    <v-btn to="/login" small class="ma-4">Login</v-btn>
-    <v-btn to="/dashboard" small class="ma-4">Dashboard</v-btn>
-  </div>
+  <v-app>
+    <v-app-bar
+            app
+            collapse-on-scroll
+            flat
+            color="primary"
+    >
+      <HomeButton/>
+      <v-spacer/>
+      <v-toolbar-title class="ma-5 title"> Galle Public Complaint Management </v-toolbar-title>
+      <v-spacer/>
+      <v-btn to="/login" small color="success">LOGIN</v-btn>
+
+    </v-app-bar>
+
+  <v-main class="bg">
+    <v-container
+            fluid
+            class="fill-height"
+    >
+      <v-spacer/>
+      <v-row style="justify-content: center"><v-btn color="error"> Make A Complaint </v-btn></v-row>
+      <v-spacer/>
+
+    </v-container>
+  </v-main>
+  </v-app>
 </template>
 
 <script>
-import EmptyLayout from "@/layouts/EmptyLayout.vue";
+import HomeButton from "@/components/HomeButton";
 
 export default {
   name: "Home",
-  created() {
-    this.$emit("update:layout", EmptyLayout);
+  components: {
+    HomeButton
   }
 };
 </script>
+
+
+<style>
+  .bg {
+    background: rgb(255,193,7);
+    background: linear-gradient(180deg, rgba(255,193,7,1) 100px, rgba(255,193,7,0) 700px, rgba(255,255,255,1) 100%);
+  }
+
+</style>

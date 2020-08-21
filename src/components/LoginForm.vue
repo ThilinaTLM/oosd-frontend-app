@@ -21,7 +21,7 @@
                     required
                     outlined
                     dense
-                    class="ma-2"
+                    class="ma-1"
             ></v-text-field>
 
             <v-text-field
@@ -31,7 +31,7 @@
                     required
                     outlined
                     dense
-                    class="ma-2"
+                    class="ma-1"
             ></v-text-field>
 
             <v-row

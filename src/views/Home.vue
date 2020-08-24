@@ -10,7 +10,7 @@
       <v-spacer/>
       <v-toolbar-title class="ma-5 title"> Galle Public Complaint Management </v-toolbar-title>
       <v-spacer/>
-      <v-btn to="/login" small color="success">LOGIN</v-btn>
+      <LoginButton/>
 
     </v-app-bar>
 
@@ -30,20 +30,19 @@
 
 <script>
 import HomeButton from "@/components/HomeButton";
+import LoginButton from "@/components/LoginButton";
 
 export default {
   name: "Home",
   components: {
-    HomeButton
+    HomeButton,
+    LoginButton
   }
 };
 </script>
 
 
 <style>
-  .bg {
-    background: rgb(255,193,7);
-    background: linear-gradient(180deg, rgba(255,193,7,1) 100px, rgba(255,193,7,0) 700px, rgba(255,255,255,1) 100%);
-  }
+
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center ">
+    <div class="text-center" style="font-size:25px">
       <v-progress-circular
         :indeterminate="indeterminate"
         rotate=0

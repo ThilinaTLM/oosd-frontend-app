@@ -20,7 +20,9 @@ const routes: Array<RouteConfig> = [
         path: '/dashboard',
         name: 'Dashboard',
         component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard/index.vue')
-    }
+    },
+    
+    
 ]
 
 const router = new VueRouter({

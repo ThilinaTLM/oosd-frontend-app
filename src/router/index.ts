@@ -17,9 +17,9 @@ const routes: Array<RouteConfig> = [
         component: Login
     },
     {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard/index.vue')
+        path: '/app',
+        name: 'app',
+        component: () => import(/* webpackChunkName: "user-app" */ '../views/app/index.vue')
     }
 ]
 

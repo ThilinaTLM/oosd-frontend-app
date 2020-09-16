@@ -30,7 +30,7 @@
 
 <script>
 import HomeButton from "@/components/HomeButton";
-import LoginButton from "@/components/LoginButton";
+import LoginButton from "@/components/user/LoginButton";
 
 export default {
   name: "Home",

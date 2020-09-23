@@ -7,83 +7,24 @@
                 flat
                 app
         >
-            <div class="toggle--bg secondary">
-                <v-btn icon color="dark"
-                       small
-                       v-if="drawer" @click="drawer = false"
-                >
-                    <v-icon>mdi-close-circle</v-icon>
-                </v-btn>
-                <v-btn icon color="dark"
-                       small
-                       v-else @click="drawer = true"
-                >
-                    <v-icon>mdi-chevron-double-right</v-icon>
-                </v-btn>
-            </div>
+            <DrawerToggle
+                    :drawer="drawer"
+                    @toggle="(args) => this.drawer = args"
+            />
 
+            <v-spacer/>
+
+            <v-btn
+                    icon
+                    small
+                    color="dark"
+                    class="ma-3"
+            >
+                <v-icon>mdi-bell</v-icon>
+            </v-btn>
         </v-app-bar>
 
-        <v-navigation-drawer
-                class="pa-2"
-                color="secondary"
-                v-model="drawer"
-                left
-                app
-        >
-            <ProfileCard/>
-            <v-divider></v-divider>
-
-            <v-list
-                    dense
-                    nav
-            >
-                <v-list-item link>
-                    <v-list-item-icon>
-                        <v-icon>mdi-file-document-edit</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>Draft Complaints</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item link>
-                    <v-list-item-icon>
-                        <v-icon>mdi-file-plus</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>Create Complaint</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-divider/>
-
-                <v-list-item link>
-                    <v-list-item-icon>
-                        <v-icon>mdi-file-certificate</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>Approve Complaints</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item link>
-                    <v-list-item-icon>
-                        <v-icon>mdi-file-plus</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>New Complaint</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
-
-            <template v-slot:append>
-                <div class="pa-2">
-                    <LogoutButton small/>
-                </div>
-            </template>
-
-        </v-navigation-drawer>
+        <NavDrawer :toggle="drawer"/>
 
         <v-main class="secondary">
             <div class="main fill-height">Content</div>
@@ -93,18 +34,27 @@
 </template>
 
 <script>
-    import ProfileCard from "../../components/user/ProfileCard";
-    import LogoutButton from "../../components/user/LogoutButton";
+    import store from "../../store"
+    import NavDrawer from "../../components/app/NavDrawer";
+    import DrawerToggle from "../../components/app/DrawerToggle";
 
     export default {
         name: "Dashboard",
         components: {
-            ProfileCard,
-            LogoutButton
+            NavDrawer,
+            DrawerToggle
         },
         data: () => ({
             drawer: true
-        })
+        }),
+        beforeRouteEnter(from, to, next) {
+            store.dispatch('user/loadLocalStorage')
+            if (store.getters['user/isAuth'] === false) {
+                next('/login')
+                return
+            }
+            next()
+        }
     }
 </script>
 
@@ -115,14 +65,6 @@
 
     .v-toolbar__content {
         padding-left: 0;
-    }
-
-    .toggle--bg {
-        display: grid;
-        justify-content: center;
-        height: 100%;
-        padding: 10px 10px;
-        border-bottom-right-radius: 20px;
     }
 
     .main {

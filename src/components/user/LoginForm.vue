@@ -42,6 +42,7 @@
                         color="success"
                         width="100%"
                         class="ma-2"
+                        to="/register"
                 >
                     REGISTER
                 </v-btn>
@@ -72,30 +73,31 @@
 </template>
 
 <script>
-    import { mapGetters, mapState } from 'vuex'
-
     export default {
         name: "LoginForm",
         data: () => ({
             valid: false,
+            isTrying: false,
+
             username: '',
             password: '',
 
             snackbar: false,
-            snackbarMsg: "Welcome!",
-            snackbarColor: "success"
+            snackbarMsg: "",
+            snackbarColor: ""
         }),
-        computed: {
-            ...mapState({
-                authState: (state) => state.user.authState
-            }),
-            ...mapGetters('user', ['isTrying'])
-        },
         methods: {
-            clickLogin() {
+            async clickLogin() {
                 let {username, password} = this
-                this.$store.dispatch('user/login', {username, password});
-                this.$emit('logged-in')
+                this.isTrying = true
+                const status = await this.$store.dispatch('user/login', {username, password});
+                if (status.code === 200) {
+                    // this.notify('Login Successful')
+                    await this.$router.push('/app')
+                } else {
+                    this.notify('Incorrect username or password', 'red')
+                }
+                this.isTrying = false
             },
 
             notify(msg, color = "success") {
@@ -103,18 +105,6 @@
                 this.snackbarMsg = msg;
                 this.snackbarColor = color;
                 this.snackbar = true;
-            }
-        },
-        watch: {
-            authState: function () {
-                switch (this.authState) {
-                    case "FAILED":
-                        this.notify('Incorrect username or password', 'error');
-                        break;
-                    case "PASS":
-                        this.notify('Successfully Logged In');
-                        this.$router.push('/app')
-                }
             }
         }
     }

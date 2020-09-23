@@ -1,3 +1,4 @@
++
 <template>
     <v-app>
         <v-main class="bg">
@@ -6,8 +7,8 @@
                     class="fill-height"
             >
                 <v-spacer/>
-                <LoggedInfo v-if="isAuthenticated"/>
-                <LoginForm @logged-in="loginSuccess" v-else/>
+                <LoggedInfo v-if="isAuth"/>
+                <LoginForm v-else/>
                 <v-spacer/>
             </v-container>
         </v-main>
@@ -16,6 +17,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import store from '@/store'
     import LoginForm from "@/components/user/LoginForm.vue";
     import LoggedInfo from "@/components/user/LoggedInfo";
 
@@ -26,12 +28,11 @@
             LoggedInfo
         },
         computed: {
-            ...mapGetters('user', ['isAuthenticated'])
+            ...mapGetters('user', ['isAuth'])
         },
-        methods: {
-            loginSuccess() {
-                // this.$router.push('/app')
-            }
+        beforeRouteEnter(from, to, next) {
+            store.dispatch('user/loadLocalStorage')
+            next()
         }
     }
 </script>

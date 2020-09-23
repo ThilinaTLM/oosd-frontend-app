@@ -13,19 +13,16 @@ class ApiConnection {
         })
     }
 
-    get = (url: string) => this.conn.get(url);
-    post = (url: string, data: any) => this.conn.post(url, data);
-    put = (url: string, data: any) => this.conn.put(url, data);
-    delete = (url: string) => this.conn.delete(url);
+    get = (url: string, query: any = undefined) => this.conn.get(url, {params: query});
+    post = (url: string, data: any, query: any = undefined) => this.conn.post(url, data, {params: query});
+    put = (url: string, data: any, query: any = undefined) => this.conn.put(url, data, {params: query});
 
     enableAuth(token: string) {
-        this.conn.defaults.
-            headers.Authorization = `Bearer ${token}`
+        this.conn.defaults.headers.Authorization = `Bearer ${token}`
     }
 
     removeAuth() {
-        delete this.conn.defaults.
-            headers.Authorization
+        delete this.conn.defaults.headers.Authorization
     }
 }
 

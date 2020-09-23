@@ -14,12 +14,17 @@ const routes: Array<RouteConfig> = [
     {
         path: '/login',
         name: 'User Login',
-        component: Login
+        component: () => import(/* webpackChunkName: "user" */ '../views/Login.vue')
     },
     {
         path: '/app',
         name: 'app',
         component: () => import(/* webpackChunkName: "user-app" */ '../views/app/index.vue')
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () => import(/* webpackChunkName: "user" */ '../views/Register.vue')
     }
 ]
 

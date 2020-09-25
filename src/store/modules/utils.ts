@@ -24,6 +24,7 @@ const mutations: MutationTree<UtilsData> = {
 const actions: ActionTree<UtilsData, RootState> = {
     async loadDivisions(store) {
         const [divisions, status] = await api.util.getAllDivisions()
+        console.log(divisions)
         if (status.code === 200) {
             store.commit('SET_DIVISIONS', divisions)
         }

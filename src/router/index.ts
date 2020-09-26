@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +11,11 @@ const routes: Array<RouteConfig> = [
         component: Home
     },
     {
+        path: '/register',
+        name: 'register',
+        component: () => import(/* webpackChunkName: "user" */ '../views/Register.vue')
+    },
+    {
         path: '/login',
         name: 'User Login',
         component: () => import(/* webpackChunkName: "user" */ '../views/Login.vue')
@@ -19,12 +23,14 @@ const routes: Array<RouteConfig> = [
     {
         path: '/app',
         name: 'app',
-        component: () => import(/* webpackChunkName: "user-app" */ '../views/app/index.vue')
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: () => import(/* webpackChunkName: "user" */ '../views/Register.vue')
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/index.vue'),
+        children: [
+            {
+                path: 'divisions',
+                name: 'Divisional Offices',
+                component: () => import(/* webpackChunkName: "web-app" */ '../views/app/Division.vue')
+            }
+        ]
     }
 ]
 

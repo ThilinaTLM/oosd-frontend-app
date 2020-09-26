@@ -42,12 +42,32 @@
                 </v-list-item-content>
             </v-list-item>
 
-            <v-list-item link>
+            <v-divider/>
+
+            <v-list-item link to="/app/">
                 <v-list-item-icon>
                     <v-icon>mdi-file-plus</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                    <v-list-item-title>New Complaint</v-list-item-title>
+                    <v-list-item-title>Users</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item link to="/app/divisions">
+                <v-list-item-icon>
+                    <v-icon>mdi-file-plus</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                    <v-list-item-title>Divisions</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item link to="/app/">
+                <v-list-item-icon>
+                    <v-icon>mdi-file-plus</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                    <v-list-item-title>GN Offices</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
         </v-list>

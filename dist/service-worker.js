@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.238482585ff4f86ad5b9b6ea52722fc4.js"
+  "/precache-manifest.5074b90565f9682e53f19609b477ae64.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "oosd-complaint-management-app"});

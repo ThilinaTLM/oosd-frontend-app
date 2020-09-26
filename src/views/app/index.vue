@@ -27,7 +27,7 @@
         <NavDrawer :toggle="drawer"/>
 
         <v-main class="secondary">
-            <div class="main fill-height">Content</div>
+            <div class="main fill-height"><router-view/></div>
         </v-main>
     </v-app>
 
@@ -48,7 +48,6 @@
             drawer: true
         }),
         beforeRouteEnter(from, to, next) {
-            store.dispatch('user/loadLocalStorage')
             if (store.getters['user/isAuth'] === false) {
                 next('/login')
                 return

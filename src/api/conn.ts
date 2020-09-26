@@ -1,5 +1,8 @@
 import axios, {AxiosInstance} from "axios";
 
+const LOCAL_API = "http://localhost:8000/api"
+const DEV_REMOTE = "https://oosd-backend-api.herokuapp.com/api"
+
 class ApiConnection {
     static readonly instance = new ApiConnection();
 
@@ -7,7 +10,7 @@ class ApiConnection {
 
     private constructor() {
         this.conn = axios.create({
-            baseURL: "http://localhost:8000/api",
+            baseURL: DEV_REMOTE,
             timeout: 5000,
             headers: {}
         })

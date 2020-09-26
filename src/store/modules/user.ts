@@ -57,6 +57,7 @@ export const actions: ActionTree<UserState, RootState> = {
         if (token && userData) {
             store.commit('SET_USER_DATA', JSON.parse(userData))
             store.commit('SET_TOKEN', token)
+            api.token.set(token)
         } else {
             localStorage.clear()
         }

@@ -3,9 +3,9 @@
 </template>
 
 <style>
-  html {
+  /* html {
     overflow-y: hidden;
-  }
+  } */
 
   .bg {
       /*background: rgb(255,193,7);*/

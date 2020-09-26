@@ -140,7 +140,7 @@
     import LoginButton from "@/components/user/LoginButton";
     import FooterCard from "@/components/home/FooterCard";
     import ProgressIndicator from "@/components/home/ProgressIndicator";
-    import {SIN} from "@/views/home/langs";
+    // import {SIN} from "@/views/home/langs";
 
     export default {
         name: "Home",
@@ -149,13 +149,13 @@
             LoginButton,
             FooterCard,
             ProgressIndicator
-        },
-        data: () => {
-          language: 'sinhala'
-        },
-        computed: {
-            lang: () => this.language === 'sinhala'? SIN : EN
         }
+        // data: () => {
+        //   // language: 'sinhala'
+        // },
+        // computed: {
+        //     // lang: () => this.language === 'sinhala'? SIN : EN
+        // }
 
 
     };

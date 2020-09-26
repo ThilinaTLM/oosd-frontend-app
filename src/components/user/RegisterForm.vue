@@ -16,7 +16,7 @@
 
             <v-stepper-items>
                 <v-stepper-content step="1" class="pa-10">
-                    <v-form v-model="valid">
+                    <v-form v-model="step1_valid">
                         <v-text-field
                                 prepend-icon="mdi-account-circle"
                                 label="Username"
@@ -24,18 +24,19 @@
                                 type="text"
                                 required
                                 v-model="userData.username"
-                                :rules="rules.username"
-                                :error-messages="errors"
+                                v-validate="'required'"
+                                :error-messages="username_errors"
                         ></v-text-field>
 
                         <v-text-field
                                 prepend-icon="mdi-lock"
+                                ref="password"
                                 label="Password"
                                 type="password"
                                 class="ma-1"
                                 required
                                 v-model="userData.password"
-                                :rules="rules.password"
+                                v-validate="'required'"
                         ></v-text-field>
 
                         <v-text-field
@@ -45,16 +46,16 @@
                                 class="ma-1"
                                 required
                                 v-model="confirmPassword"
-                                :rules="rules.confirmPassword"
+                                v-validate="'required|confirm:password'"
                         ></v-text-field>
 
                         <v-btn
                                 color="success"
                                 class="ma-2"
                                 type="submit"
-                                @click="checkCredential"
+                                @click="submitStep1"
                                 :loading="loading"
-                                :disabled="!valid"
+                                :disabled="!step1_valid"
                         >
                             Continue
                         </v-btn>
@@ -195,13 +196,6 @@
                 email: ''
             },
             confirmPassword: '',
-
-            rules: {
-                username: [],
-                password: [p => p.length > 6 || 'must contains at least 6 characters'],
-                confirmPassword: [p => (p === this.userData.password) || "confirmation doesn't match"]
-            },
-
             username_errors: []
         }),
         methods: {

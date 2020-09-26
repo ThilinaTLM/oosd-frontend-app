@@ -14,11 +14,10 @@
 <script>
   export default {
       name:"ProgressIndicator",
-    data: () => ({
-      value: value,
-      color:color,
-      indeterminate:false
-    }),
-    props:['value','color']
+      props: [
+          'value',
+          'color',
+          'indeterminate'
+      ]
   }
 </script>

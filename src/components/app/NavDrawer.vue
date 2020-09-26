@@ -64,7 +64,7 @@
 
             <v-list-item link to="/app/">
                 <v-list-item-icon>
-                    <v-icon>mdi-file-plus</v-icon>
+                    <v-icon>mdi-cheese</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                     <v-list-item-title>GN Offices</v-list-item-title>

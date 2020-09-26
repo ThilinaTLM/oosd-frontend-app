@@ -1,49 +1,40 @@
++
 <template>
-  <v-app>
-    <v-app-bar
-            app
-            collapse
-            flat
-            color="primary"
-    >
-      <HomeButton/>
-    </v-app-bar>
-
-    <v-main class="bg">
-      <v-container
-              fluid
-              class="fill-height"
-      >
-        <v-spacer/>
-        <LoginForm @submit="onSubmit" title="User Login"/>
-        <v-spacer/>
-
-      </v-container>
-    </v-main>
-  </v-app>
+    <v-app>
+        <v-main class="bg">
+            <v-container
+                    fluid
+                    class="fill-height"
+            >
+                <v-spacer/>
+                <LoggedInfo v-if="isAuth"/>
+                <LoginForm v-else/>
+                <v-spacer/>
+            </v-container>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-  import LoginForm from "../components/LoginForm.vue";
-  import HomeButton from "@/components/HomeButton";
-  import Home from "@/views/Home";
-  import router from "@/router";
+    import {mapGetters} from 'vuex'
+    import store from '@/store'
+    import LoginForm from "@/components/user/LoginForm.vue";
+    import LoggedInfo from "@/components/user/LoggedInfo";
 
-  export default {
-    name: 'Login',
-    components: {
-      Home,
-      LoginForm,
-      HomeButton
-    },
-    methods: {
-      onSubmit(username, password) {
-        if (username === "thilina" && password === "12345") {
-          router.push('/dashboard')
+    export default {
+        name: 'Login',
+        components: {
+            LoginForm,
+            LoggedInfo
+        },
+        computed: {
+            ...mapGetters('user', ['isAuth'])
+        },
+        beforeRouteEnter(from, to, next) {
+            store.dispatch('user/loadLocalStorage')
+            next()
         }
-      }
     }
-  }
 </script>
 
 <style>

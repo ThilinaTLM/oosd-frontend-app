@@ -111,7 +111,6 @@ import LoginButton from "@/components/LoginButton";
 import FooterCard from "@/components//FooterCard";
 import ProgressIndicator from "@/components/ProgressIndicator";
 
-
 export default {
   name: "Home",
   components: {

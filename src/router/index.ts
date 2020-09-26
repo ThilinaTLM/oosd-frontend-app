@@ -14,15 +14,18 @@ const routes: Array<RouteConfig> = [
     {
         path: '/login',
         name: 'User Login',
-        component: Login
+        component: () => import(/* webpackChunkName: "user" */ '../views/Login.vue')
     },
     {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard/index.vue')
+        path: '/app',
+        name: 'app',
+        component: () => import(/* webpackChunkName: "user-app" */ '../views/app/index.vue')
     },
-    
-    
+    {
+        path: '/register',
+        name: 'register',
+        component: () => import(/* webpackChunkName: "user" */ '../views/Register.vue')
+    }
 ]
 
 const router = new VueRouter({

@@ -12,18 +12,21 @@
                 <v-spacer/>
             </v-container>
         </v-main>
+        <Popup/>
     </v-app>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
-    import store from '@/store'
+    import store from '../store'
     import LoginForm from "@/components/user/LoginForm.vue";
-    import LoggedInfo from "@/components/user/LoggedInfo";
+    import LoggedInfo from "../components/user/LoggedInfo";
+    import Popup from "../components/app/Popup";
 
     export default {
         name: 'Login',
         components: {
+            Popup,
             LoginForm,
             LoggedInfo
         },

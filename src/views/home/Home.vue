@@ -38,21 +38,21 @@
                 <v-row style="align-content: center">
                     <v-col>
                         <v-row class="stats values" style="padding:0px; margin:0px">
-                            <ProgressIndicator value="100" color="black" indeterminate="true"/>
+                            <ProgressIndicator value="100" color="black" indeterminate=false />
                         </v-row>
                         <v-row class="stats">Registered Users</v-row>
                     </v-col>
 
                     <v-col>
                         <v-row class="stats values" style="padding:0px; margin:0px">
-                            <ProgressIndicator value="75" color="red" indeterminate="true"/>
+                            <ProgressIndicator value="75" color="red" indeterminate=false />
                         </v-row>
                         <v-row class="stats">In Progress</v-row>
                     </v-col>
 
                     <v-col>
                         <v-row class="stats values" style="padding:0px; margin:0px">
-                            <ProgressIndicator value="25" color="green" indeterminate="true"/>
+                            <ProgressIndicator value="25" color="green" indeterminate=false />
                         </v-row>
                         <v-row class="stats">Problems Solved</v-row>
                     </v-col>
@@ -140,7 +140,6 @@
     import LoginButton from "@/components/user/LoginButton";
     import FooterCard from "@/components/home/FooterCard";
     import ProgressIndicator from "@/components/home/ProgressIndicator";
-    // import {SIN} from "@/views/home/langs";
 
     export default {
         name: "Home",
@@ -150,14 +149,6 @@
             FooterCard,
             ProgressIndicator
         }
-        // data: () => {
-        //   // language: 'sinhala'
-        // },
-        // computed: {
-        //     // lang: () => this.language === 'sinhala'? SIN : EN
-        // }
-
-
     };
 </script>
 

@@ -16,7 +16,7 @@
 
             <v-stepper-items>
                 <v-stepper-content step="1" class="pa-10">
-                    <v-form v-model="step1_valid">
+                    <v-form v-model="step1_valid" @submit.prevent="submitStep1" lazy-validation>
                         <v-text-field
                                 prepend-icon="mdi-account-circle"
                                 label="Username"
@@ -24,8 +24,8 @@
                                 type="text"
                                 required
                                 v-model="userData.username"
-                                v-validate="'required'"
                                 :error-messages="username_errors"
+
                         ></v-text-field>
 
                         <v-text-field
@@ -36,7 +36,7 @@
                                 class="ma-1"
                                 required
                                 v-model="userData.password"
-                                v-validate="'required'"
+                                :error-messages="password_errors"
                         ></v-text-field>
 
                         <v-text-field
@@ -46,14 +46,13 @@
                                 class="ma-1"
                                 required
                                 v-model="confirmPassword"
-                                v-validate="'required|confirm:password'"
+                                :error-messages="confirm_password_errors"
                         ></v-text-field>
 
                         <v-btn
                                 color="success"
                                 class="ma-2"
                                 type="submit"
-                                @click="submitStep1"
                                 :loading="loading"
                                 :disabled="!step1_valid"
                         >
@@ -63,6 +62,7 @@
                         <v-btn
                                 text
                                 class="ma-2"
+                                to="/login"
                         >
                             Cancel
                         </v-btn>
@@ -70,71 +70,83 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="2" class="pa-10">
+                    <v-form v-model="step2_valid" @submit.prevent="submitStep2">
+                        <v-row>
+                            <v-col>
+                                <v-text-field
+                                        prepend-icon="mdi-rename-box"
+                                        label="First Name"
+                                        type="text"
+                                        required
+                                        v-model="userData.firstName"
+                                ></v-text-field>
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                        prepend-icon="mdi-rename-box"
+                                        label="Last Name"
+                                        type="text"
+                                        required
+                                        v-model="userData.lastName"
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
 
-                    <v-row>
-                        <v-col>
-                            <v-text-field
-                                    prepend-icon="mdi-rename-box"
-                                    label="First Name"
-                                    type="text"
-                                    required
-                            ></v-text-field>
-                        </v-col>
-                        <v-col>
-                            <v-text-field
-                                    prepend-icon="mdi-rename-box"
-                                    label="Last Name"
-                                    type="text"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
+                        <v-text-field
+                                prepend-icon="mdi-email"
+                                label="Email"
+                                type="text"
+                                required
+                                v-model="userData.email"
+                        ></v-text-field>
 
-                    <v-text-field
-                            prepend-icon="mdi-email"
-                            label="Email"
-                            type="text"
-                    ></v-text-field>
+                        <v-text-field
+                                prepend-icon="mdi-phone"
+                                label="Telephone"
+                                type="text"
+                                required
+                                v-model="userData.telephoneNumber"
+                        ></v-text-field>
 
-                    <v-text-field
-                            prepend-icon="mdi-phone"
-                            label="Telephone"
-                            type="text"
-                    ></v-text-field>
-
-                    <v-row>
-                        <v-col>
-                            <v-select
-                                    prepend-icon="mdi-format-list-bulleted"
-                                    label="Type"
-                                    :items="roles"
-                                    v-model="userData.role"
-                            ></v-select>
-                        </v-col>
-                        <v-col>
-                            <v-select
-                                    v-if="userData.role.includes('Divisional')"
-                                    prepend-icon="mdi-home-account"
-                                    label="Division"
-                                    :items="divisions"
-                            ></v-select>
-                        </v-col>
-                    </v-row>
+                        <v-row>
+                            <v-col>
+                                <v-select
+                                        prepend-icon="mdi-format-list-bulleted"
+                                        label="Type"
+                                        :items="roles"
+                                        v-model="userData.role"
+                                ></v-select>
+                            </v-col>
+                            <v-col>
+                                <v-select
+                                        v-if="userData.role.includes('Divisional')"
+                                        prepend-icon="mdi-home-account"
+                                        label="Division"
+                                        :items="divisions"
+                                        v-model="userData.office"
+                                ></v-select>
+                            </v-col>
+                        </v-row>
 
 
-                    <v-btn
-                            color="success"
-                            class="ma-2"
-                            @click="stepCount = 3"
-                    >
-                        Register
-                    </v-btn>
+                        <v-btn
+                                color="success"
+                                class="ma-2"
+                                type="submit"
+                                :loading="loading"
+                                :disabled="!step2_valid"
+                        >
+                            Register
+                        </v-btn>
 
-                    <v-btn
-                            text
-                            class="ma-2"
-                    >
-                        Cancel
-                    </v-btn>
+                        <v-btn
+                                text
+                                class="ma-2"
+                                to="/login"
+                        >
+                            Cancel
+                        </v-btn>
+                    </v-form>
                 </v-stepper-content>
                 <v-stepper-content step="3" class="pa-10">
                     <v-alert
@@ -151,7 +163,7 @@
                                 color="success"
                                 width="150px"
                                 class="ma-5"
-                                @click="stepCount = 1"
+                                to="/login"
                         >
                             LOGIN
                         </v-btn>
@@ -171,8 +183,8 @@
         data: () => ({
             stepCount: 1,
             loading: false,
-            step1_valid: true,
-            step2_valid: true,
+            step1_valid: false,
+            step2_valid: false,
 
             roles: [
                 'Administrator',
@@ -182,10 +194,6 @@
                 'Divisional Secretariat'
             ],
 
-            divisions: [
-                'Galle'
-            ],
-
             userData: {
                 username: '',
                 password: '',
@@ -193,10 +201,14 @@
                 lastName: '',
                 role: '',
                 telephoneNumber: '',
-                email: ''
+                email: '',
+                office: null
             },
+
             confirmPassword: '',
-            username_errors: []
+            username_errors: [],
+            password_errors: [],
+            confirm_password_errors: []
         }),
         methods: {
             submitStep1() {
@@ -204,20 +216,62 @@
                     this.stepCount = 2
                 }
             },
-            submitStep2() {
-                if (this.step1_valid) {
-                    this.stepCount = 2
+            async submitStep2() {
+                if (!this.step1_valid) {
+                    return
                 }
+                this.loading = true
+                const [_, status] = await api.user.register(this.userData)
+                if (status.code !== 200) {
+                    console.log('Registration Failed')
+                    return
+                }
+
+                this.loading = false
+                this.stepCount = 3
+            }
+        },
+        computed: {
+            divisions() {
+                return this.$store.state.utils.divisions
             }
         },
         watch: {
             'userData.username': async function () {
-                const [res, status] = await api.user.checkUsername(this.userData.username)
-                if (status.code === 200 && res === false) {
-                    this.errors = []
-                } else {
-                    this.errors = ['Username in use by someone']
+                if (this.userData.username.length < 6) {
+                    this.username_errors = ['Username must be at least 6 character long']
+                    return;
                 }
+
+                const [res, status] = await api.user.checkUsername(this.userData.username)
+                if (status.code !== 200 || res !== false) {
+                    this.username_errors = ['Username is taken']
+                    return;
+                }
+
+                this.username_errors = []
+            },
+
+            'userData.password': async function () {
+                if (this.userData.password.length < 6) {
+                    this.password_errors = ['Password must be at least 6 character long']
+                    return;
+                }
+
+                if (this.confirmPassword !== this.userData.password) {
+                    this.confirm_password_errors = [`Password doesn't match`]
+                }
+
+                this.password_errors = []
+                this.confirm_password_errors = []
+            },
+
+            'confirmPassword': async function () {
+                if (this.confirmPassword !== this.userData.password) {
+                    this.confirm_password_errors = [`Password doesn't match`]
+                    return;
+                }
+                this.confirm_password_errors = []
             }
         }
     }

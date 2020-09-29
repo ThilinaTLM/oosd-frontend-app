@@ -12,7 +12,7 @@
 
         <a 
         v-for="icon in icons"
-          :key="icon"
+          :key="icon.name"
           :href="icon.url"
         >
         <v-btn

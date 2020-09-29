@@ -10,17 +10,19 @@
             </v-container>
 
         </v-main>
-
+        <Popup/>
 
     </v-app>
 </template>
 
 <script>
     import RegisterForm from "../components/user/RegisterForm";
+    import Popup from "../components/app/Popup";
 
     export default {
         name: "Register",
         components: {
+            Popup,
             RegisterForm
         }
     }

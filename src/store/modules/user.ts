@@ -41,17 +41,21 @@ const mutations: MutationTree<UserState> = {
 
 export const actions: ActionTree<UserState, RootState> = {
     async login(store, payload) {
-        const [{token, userData}, status] = await api.user.login(payload.username, payload.password)
-        if (userData !== null) {
-            store.commit('SET_USER_DATA', userData)
-            store.commit('SET_TOKEN', token)
+        const [data, status] = await api.user.login(payload.username, payload.password)
+        if (status.code === 200) {
+            store.commit('SET_USER_DATA', data.userData)
+            store.commit('SET_TOKEN', data.token)
             store.dispatch('setLocalStorage')
-            api.token.set(token)
+            api.token.set(data.token)
         }
         return status
     },
 
     loadLocalStorage(store) {
+        if (store.state.userData != null) {
+            return
+        }
+
         const token = localStorage.getItem('token')
         const userData = localStorage.getItem('userData')
         if (token && userData) {

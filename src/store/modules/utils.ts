@@ -2,14 +2,16 @@ import {ActionTree, GetterTree, Module, MutationTree} from "vuex";
 import {RootState} from "@/store";
 import {api} from "@/api";
 
-type Division = { name: string, address: string }
+type Office = { name: string, address: string }
 
 export interface UtilsData {
-    divisions: Division[],
+    divisions: Office[],
+    gn_offices: Office[]
 }
 
 const state: UtilsData = {
-    divisions: []
+    divisions: [],
+    gn_offices: []
 }
 
 const mutations: MutationTree<UtilsData> = {
@@ -18,13 +20,18 @@ const mutations: MutationTree<UtilsData> = {
     },
     ADD_DIVISION(state, payload) {
         state.divisions.push(payload)
+    },
+    SET_GN_OFFICES(state, payload) {
+        state.gn_offices = payload
+    },
+    ADD_GN_OFFICE(state, payload) {
+        state.gn_offices.push(payload)
     }
 }
 
 const actions: ActionTree<UtilsData, RootState> = {
     async loadDivisions(store) {
         const [divisions, status] = await api.util.getAllDivisions()
-        console.log(divisions)
         if (status.code === 200) {
             store.commit('SET_DIVISIONS', divisions)
         }
@@ -35,6 +42,22 @@ const actions: ActionTree<UtilsData, RootState> = {
         const status = await api.util.addDivision(payload.name, payload.address)
         if (status.code === 200) {
             store.commit('ADD_DIVISION', payload)
+        }
+        return status
+    },
+
+    async loadGNOffices(store) {
+        const [divisions, status] = await api.util.getAllGNOffices()
+        if (status.code === 200) {
+            store.commit('SET_GN_OFFICES', divisions)
+        }
+        return status
+    },
+
+    async addGNOffice(store, payload) {
+        const status = await api.util.addGNOffice(payload.name, payload.address)
+        if (status.code === 200) {
+            store.commit('ADD_GN_OFFICE', payload)
         }
         return status
     }

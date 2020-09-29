@@ -2,13 +2,13 @@
     <div class="toggle--bg secondary">
         <v-btn icon color="dark"
                small
-               v-if="drawer" @click="$emit('toggle', false); drawer = false"
+               v-if="opened" @click="$emit('toggle', false); opened = false"
         >
             <v-icon>mdi-close-circle</v-icon>
         </v-btn>
         <v-btn icon color="dark"
                small
-               v-else @click="$emit('toggle', true); drawer = true"
+               v-else @click="$emit('toggle', true); opened = true"
         >
             <v-icon>mdi-chevron-double-right</v-icon>
         </v-btn>
@@ -20,7 +20,10 @@
         name: "DrawerToggle",
         props: [
             'drawer'
-        ]
+        ],
+        data: () => ({
+            opened: true
+        })
     }
 </script>
 

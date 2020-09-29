@@ -95,7 +95,12 @@
                     // this.notify('Login Successful')
                     await this.$router.push('/app')
                 } else {
-                    this.notify('Incorrect username or password', 'red')
+                    this.$store.commit('app/SHOW_MSG', {
+                        title: '',
+                        msg: 'Incorrect username or password',
+                        type: 'ERROR'
+                    })
+                    // this.notify('Incorrect username or password', 'red')
                 }
                 this.isTrying = false
             },

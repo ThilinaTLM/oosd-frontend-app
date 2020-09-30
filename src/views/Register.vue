@@ -17,7 +17,7 @@
 
 <script>
     import RegisterForm from "../components/user/RegisterForm";
-    import PopAlert from "../components/app/PopAlert";
+    import PopAlert from "../components/PopAlert";
 
     export default {
         name: "Register",

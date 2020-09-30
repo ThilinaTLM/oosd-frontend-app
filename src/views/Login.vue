@@ -21,7 +21,7 @@
     import store from '../store'
     import LoginForm from "@/components/user/LoginForm.vue";
     import LoggedInfo from "../components/user/LoggedInfo";
-    import PopAlert from "../components/app/PopAlert";
+    import PopAlert from "../components/PopAlert";
 
     export default {
         name: 'Login',

@@ -9,7 +9,7 @@ function bn(name: string, icon: string, link: string): NavItemData {
 }
 
 const draft     = bn('Draft Complaint', 'mdi-file-document-edit', '')
-const create    = bn('New Complaint', 'mdi-file-plus', '')
+const create    = bn('New Complaint', 'mdi-file-plus', '/app/complaint/create-new')
 const approve   = bn('Approve Complaint', 'mdi-file-certificate', '')
 const forward   = bn('Forward Complaint', 'mdi-file-certificate', '')
 const accept    = bn('Accept Complaint', 'mdi-file-document-edit', '')

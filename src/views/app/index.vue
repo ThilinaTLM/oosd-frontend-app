@@ -39,7 +39,7 @@
     import store from "../../store"
     import NavDrawer from "../../components/app/nav-drawer/NavDrawer";
     import DrawerToggle from "../../components/app/nav-drawer/DrawerToggle";
-    import PopAlert from "../../components/app/PopAlert";
+    import PopAlert from "../../components/PopAlert";
 
     export default {
         name: "App",

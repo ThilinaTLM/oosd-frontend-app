@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/home/Home.vue'
-import PopAlert from '../components/app/PopAlert.vue'
+import PopAlert from '../components/PopAlert.vue'
+import {appRoutes} from "@/router/app";
 
 Vue.use(VueRouter)
 
@@ -29,23 +30,7 @@ const routes: Array<RouteConfig> = [
     {
         path: '/app',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/index.vue'),
-        children: [
-            {
-                path: '',
-                name: 'Dashboard',
-                component: () => import(/* webpackChunkName: "web-app" */ '../views/app/Dashboard.vue')
-            },
-            {
-                path: 'utils/divisions',
-                name: 'DivisionalOffices',
-                component: () => import(/* webpackChunkName: "web-app" */ '../views/app/Division.vue')
-            },
-            {
-                path: 'utils/gn-offices',
-                name: 'GnOffices',
-                component: () => import(/* webpackChunkName: "web-app" */ '../views/app/GnOffice.vue')
-            }
-        ]
+        children: appRoutes
     }
 ]
 

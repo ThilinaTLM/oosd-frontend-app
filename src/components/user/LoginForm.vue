@@ -49,26 +49,7 @@
 
             </v-form>
         </v-container>
-        <v-snackbar
-                dark
-                :color="snackbarColor"
-                right
-                bottom
-                timeout="5000"
-                v-model="snackbar"
-        >
-            {{snackbarMsg}}
-            <template v-slot:action="{ attrs }">
-                <v-btn
-                        dark
-                        text
-                        v-bind="attrs"
-                        @click="snackbar = false"
-                >
-                    <v-icon>mdi-close-circle</v-icon>
-                </v-btn>
-            </template>
-        </v-snackbar>
+
     </div>
 </template>
 
@@ -80,11 +61,7 @@
             isTrying: false,
 
             username: '',
-            password: '',
-
-            snackbar: false,
-            snackbarMsg: "",
-            snackbarColor: ""
+            password: ''
         }),
         methods: {
             async clickLogin() {
@@ -92,24 +69,14 @@
                 this.isTrying = true
                 const status = await this.$store.dispatch('user/login', {username, password});
                 if (status.code === 200) {
-                    // this.notify('Login Successful')
                     await this.$router.push('/app')
                 } else {
                     this.$store.commit('app/SHOW_MSG', {
-                        title: '',
-                        msg: 'Incorrect username or password',
-                        type: 'ERROR'
+                        text: 'Incorrect username or password',
+                        type: 'error'
                     })
-                    // this.notify('Incorrect username or password', 'red')
                 }
                 this.isTrying = false
-            },
-
-            notify(msg, color = "success") {
-                this.snackbar = false
-                this.snackbarMsg = msg;
-                this.snackbarColor = color;
-                this.snackbar = true;
             }
         }
     }

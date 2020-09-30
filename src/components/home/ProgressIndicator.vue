@@ -1,7 +1,7 @@
 <template>
     <div class="text-center" style="font-size:25px">
       <v-progress-circular
-        :indeterminate="indeterminate"
+        :indeterminate="indeterminate===true"
         rotate=0
         size=64
         :value="value"

@@ -1,7 +1,7 @@
 +
 <template>
     <v-app>
-        <v-main class="bg">
+        <v-main class="bg2">
             <v-container
                     fluid
                     class="fill-height"
@@ -33,8 +33,8 @@
         computed: {
             ...mapGetters('user', ['isAuth'])
         },
-        beforeRouteEnter(from, to, next) {
-            store.dispatch('user/loadLocalStorage')
+        async beforeRouteEnter(from, to, next) {
+            await store.dispatch('user/loadLocalStorage')
             next()
         }
     }

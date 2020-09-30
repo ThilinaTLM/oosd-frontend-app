@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/home/Home.vue'
-import PopAlert from '../components/PopAlert.vue'
 import {appRoutes} from "@/router/app";
+
+import Home from '../views/home/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -11,11 +11,6 @@ const routes: Array<RouteConfig> = [
         path: '/',
         name: 'Home',
         component: Home
-    },
-    {
-      path: '/test',
-      name: 'Test',
-      component: PopAlert
     },
     {
         path: '/register',

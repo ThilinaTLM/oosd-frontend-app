@@ -24,10 +24,12 @@
             </v-btn>
         </v-app-bar>
 
-        <NavDrawer :toggle="drawer" />
+        <NavDrawer :toggle="drawer" @close="$store.commit('app/SHOW_MSG', {text:'Closed'})"/>
 
         <v-main class="secondary">
-            <div class="main fill-height"><router-view/></div>
+            <div class="main fill-height">
+                <router-view/>
+            </div>
         </v-main>
 
         <PopAlert/>
@@ -52,8 +54,8 @@
             drawer: true
         }),
 
-        beforeRouteEnter(from, to, next) {
-            store.dispatch('user/loadLocalStorage');
+        async beforeRouteEnter(from, to, next) {
+            await store.dispatch('user/loadLocalStorage');
             if (store.getters['user/isAuth'] === false) {
                 next('/login');
                 return;
@@ -63,30 +65,12 @@
     }
 </script>
 
-<style>
+<style scoped>
     .main {
         padding: 10px;
         border-top-left-radius: 6px;
         background-color: white;
     }
 
-    /* width */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #FFC107;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #4d2909;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #000000;
-    }
 </style>

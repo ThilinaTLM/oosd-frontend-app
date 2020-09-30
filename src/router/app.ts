@@ -23,7 +23,7 @@ export const appRoutes: Array<RouteConfig> = [
     },
     {
         path: 'complaint/create-new',
-        name: 'GnOffices',
+        name: 'NewComplaint',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/AddComplaint.vue')
     }
 

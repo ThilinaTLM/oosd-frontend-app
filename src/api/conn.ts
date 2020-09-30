@@ -23,7 +23,6 @@ class ApiConnection {
 
     enableAuth(token: string) {
         this.conn.defaults.headers.Authorization = `Bearer ${token}`
-        console.log(token)
     }
 
     removeAuth() {

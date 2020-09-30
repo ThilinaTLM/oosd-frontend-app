@@ -7,6 +7,6 @@ module.exports = {
 
   pwa: {
     name: 'Galle-CMS',
-    themeColor: '#ECDB1F'
+    themeColor: '#ff9900'
   }
 };

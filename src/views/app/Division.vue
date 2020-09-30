@@ -9,62 +9,19 @@
         >
             <template v-slot:top>
                 <div class="table-heading" >
-                        <v-dialog v-model="dialogBox" persistent width="450px">
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn
-                                        style="grid-column: 1/2"
-                                        color="success"
-                                        v-bind="attrs"
-                                        v-on="on"
-                                >
-                                    <v-icon>mdi-plus</v-icon>
-                                    ADD
-                                </v-btn>
-                            </template>
-                            <v-card class="pa-5">
-                                <v-card-title>
-                                    New divisional office
-                                </v-card-title>
-                                <v-form
-                                        class="pa-5"
-                                        @submit.prevent="submitDivisionForm"
-                                >
-                                    <v-text-field
-                                            label="name"
-                                            required
-                                            clear-icon="mid-close"
-                                            v-model="editItem.name"
-                                    />
-                                    <v-text-field
-                                            label="address"
-                                            v-model="editItem.address"
-                                    />
-
-                                    <v-row>
-                                        <v-col cols="5" class="ma-3">
-                                            <v-btn
-                                                    width="100%"
-                                                    color="success"
-                                                    type="submit"
-                                                    :loading="savingData"
-                                            >
-                                                Save
-                                            </v-btn>
-                                        </v-col>
-                                        <v-col cols="5" class="ma-3">
-                                            <v-btn
-                                                    width="100%"
-                                                    color="warning"
-                                                    @click="dialogBox = false"
-                                            >
-                                                Cancel
-                                            </v-btn>
-                                        </v-col>
-                                    </v-row>
-
-                                </v-form>
-                            </v-card>
-                        </v-dialog>
+                        <v-btn
+                                style="grid-column: 1/2"
+                                color="success"
+                                @click="dialogBox = true"
+                        >
+                            <v-icon>mdi-plus</v-icon>
+                            ADD
+                        </v-btn>
+                        <AddOffice
+                                :dialog="dialogBox"
+                                @submit="addNewDivision"
+                                @close="dialogBox = false"
+                        />
                         <v-text-field
                                 style="grid-column: 3/4"
                                 append-icon="mdi-magnify"
@@ -100,9 +57,11 @@
 
 <script>
     import {mapState} from 'vuex'
+    import AddOffice from "../../components/app/dialogs/AddOffice";
 
     export default {
         name: "Division",
+        components: {AddOffice},
         data: () => ({
             loading: false,
             search: '',
@@ -122,27 +81,19 @@
                 }
             ],
 
-            // dialog ------------------------------
-
-            dialogBox: false,
-            savingData: false,
-            editItem: {
-                name: '',
-                address: ''
-            }
+            dialogBox: false
         }),
         methods: {
-            async submitDivisionForm() {
-                this.savingData = true
-                const status = await this.$store.dispatch('utils/addDivision', this.editItem)
+            async addNewDivision(data) {
+                this.loading = true
+                const status = await this.$store.dispatch('utils/addDivision', data)
                 if (status.code !== 200) {
                     this.$store.commit('app/SHOW_MSG', {
-                        msg: status.message,
+                        text: status.message,
                         type: 'error'
                     })
                 }
-                this.savingData = false
-                this.dialogBox = false
+                this.loading = false
             }
         },
         computed: {

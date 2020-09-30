@@ -3,10 +3,14 @@
             class="pa-2"
             color="secondary"
             v-model="toggle"
+            stateless
             left
             app
     >
-        <ProfileCard/>
+        <template v-slot:prepend>
+            <ProfileCard/>
+        </template>
+
         <v-divider></v-divider>
 
         <v-list

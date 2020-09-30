@@ -47,9 +47,3 @@
         }
     }
 </script>
-
-<style>
-    .v-snack__content {
-        padding: 0;
-    }
-</style>

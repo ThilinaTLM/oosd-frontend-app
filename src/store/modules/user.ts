@@ -78,6 +78,7 @@ export const actions: ActionTree<UserState, RootState> = {
 
     async logout(store) {
         store.commit('CLEAR_USER_DATA')
+        api.token.remove()
         localStorage.clear()
     }
 }

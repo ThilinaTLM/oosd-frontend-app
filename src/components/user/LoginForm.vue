@@ -70,6 +70,11 @@
                 const status = await this.$store.dispatch('user/login', {username, password});
                 if (status.code === 200) {
                     await this.$router.push('/app')
+                } else if (status.code === 401) {
+                    this.$store.commit('app/SHOW_MSG', {
+                        text: 'Account is not verified yet',
+                        type: 'error'
+                    })
                 } else {
                     this.$store.commit('app/SHOW_MSG', {
                         text: 'Incorrect username or password',

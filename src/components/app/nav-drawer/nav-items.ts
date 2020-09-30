@@ -17,7 +17,7 @@ const submit    = bn('Submit Complaint', 'mdi-file-document-edit', '')
 const solved    = bn('Solved Complaint', 'mdi-file-document-edit', '')
 const reject    = bn('Rejected Complaint', 'mdi-file-document-edit', '')
 const find      = bn('Find Complaint', 'mdi-file-document-edit', '')
-const users     = bn('User Account', 'mdi-account', '')
+const users     = bn('User Account', 'mdi-account', '/app/utils/user-accounts')
 const div       = bn('Divisional Offices', 'mdi-office-building', '/app/utils/divisions')
 const gn        = bn('G.N Offices', 'mdi-home', '/app/utils/gn-offices')
 

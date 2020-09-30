@@ -17,6 +17,11 @@ export const appRoutes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/GnOffice.vue')
     },
     {
+        path: 'utils/user-accounts',
+        name: 'UserAccounts',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/UserList.vue')
+    },
+    {
         path: 'complaint/create-new',
         name: 'GnOffices',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/AddComplaint.vue')

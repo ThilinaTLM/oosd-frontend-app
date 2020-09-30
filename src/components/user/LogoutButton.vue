@@ -19,9 +19,9 @@
             'small'
         ],
         methods: {
-            logout() {
-                this.$store.dispatch('user/logout')
-                this.$router.push('/login')
+            async logout() {
+                await this.$store.dispatch('user/logout')
+                await this.$router.push('/login')
             }
         }
     }

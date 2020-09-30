@@ -48,14 +48,32 @@ export const userApi = {
 
     /**
      * Get list of users with given parameters
-     * @param userId
+     * @param condition
      */
-    async getUser(userId: string): Promise<[any, Status]> {
+    async getUser(condition: any): Promise<[any, Status]> {
         try {
-            const res = await apiConn.get('user/get-user', {userId});
+            const res = await apiConn.get('user/get-user');
             return [res.data.data, toStatus(res)];
         } catch (e) {
             return [null, toStatus(e.response)]
+        }
+    },
+
+    async verifyUser(userId: string): Promise<Status> {
+        try {
+            const res = await apiConn.put(`user/verify-user/${userId}`);
+            return toStatus(res);
+        } catch (e) {
+            return toStatus(e.response)
+        }
+    },
+
+    async disableUser(userId: string): Promise<Status> {
+        try {
+            const res = await apiConn.put(`user/disable-user/${userId}`);
+            return toStatus(res);
+        } catch (e) {
+            return toStatus(e.response)
         }
     }
 }

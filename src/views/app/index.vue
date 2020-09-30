@@ -64,14 +64,6 @@
 </script>
 
 <style>
-    .v-navigation-drawer__border {
-        width: 0;
-    }
-
-    .v-toolbar__content {
-        padding-left: 0;
-    }
-
     .main {
         padding: 10px;
         border-top-left-radius: 6px;

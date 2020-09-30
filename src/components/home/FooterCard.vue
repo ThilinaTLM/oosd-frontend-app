@@ -5,9 +5,9 @@
       tile
       color="primary"
     >
-      <v-card-title >
-        <a href="http://www.galle.dist.gov.lk/index.php/en/">
-          <v-btn color="transparent" to="">Visit Galle District Secretariat</v-btn></a>
+      <v-card-title class="pt-5 pa-0">
+        <a href="http://www.galle.dist.gov.lk/index.php/en/" target="_blank">
+          <v-btn text color="black" to="">Visit Galle District Secretariat</v-btn></a>
         <v-spacer></v-spacer>
 
         <a 
@@ -19,6 +19,7 @@
           class="mx-4"
           dark
           icon
+
           
         >
        
@@ -27,7 +28,7 @@
         </a>
       </v-card-title>
 
-      <v-card-text class="py-2 white--text">
+      <v-card-text class="py-2 black--text">
        Copyright © {{ new Date().getFullYear() }} Galle District Public Grievance Management. All Rights Reserved.
       </v-card-text>
     </v-card>

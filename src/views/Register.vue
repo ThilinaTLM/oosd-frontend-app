@@ -10,19 +10,19 @@
             </v-container>
 
         </v-main>
-        <Popup/>
+        <PopAlert/>
 
     </v-app>
 </template>
 
 <script>
     import RegisterForm from "../components/user/RegisterForm";
-    import Popup from "../components/app/Popup";
+    import PopAlert from "../components/app/PopAlert";
 
     export default {
         name: "Register",
         components: {
-            Popup,
+            PopAlert,
             RegisterForm
         }
     }

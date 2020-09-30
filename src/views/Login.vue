@@ -12,7 +12,7 @@
                 <v-spacer/>
             </v-container>
         </v-main>
-        <Popup/>
+        <PopAlert/>
     </v-app>
 </template>
 
@@ -21,12 +21,12 @@
     import store from '../store'
     import LoginForm from "@/components/user/LoginForm.vue";
     import LoggedInfo from "../components/user/LoggedInfo";
-    import Popup from "../components/app/Popup";
+    import PopAlert from "../components/app/PopAlert";
 
     export default {
         name: 'Login',
         components: {
-            Popup,
+            PopAlert,
             LoginForm,
             LoggedInfo
         },

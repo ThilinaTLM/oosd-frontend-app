@@ -30,7 +30,7 @@
             <div class="main fill-height"><router-view/></div>
         </v-main>
 
-        <Popup/>
+        <PopAlert/>
     </v-app>
 
 </template>
@@ -39,14 +39,14 @@
     import store from "../../store"
     import NavDrawer from "../../components/app/nav-drawer/NavDrawer";
     import DrawerToggle from "../../components/app/nav-drawer/DrawerToggle";
-    import Popup from "../../components/app/Popup";
+    import PopAlert from "../../components/app/PopAlert";
 
     export default {
         name: "App",
         components: {
             NavDrawer,
             DrawerToggle,
-            Popup
+            PopAlert
         },
         data: () => ({
             drawer: true

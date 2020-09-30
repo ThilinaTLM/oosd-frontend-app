@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/home/Home.vue'
-import Popup from '../components/app/Popup.vue'
+import PopAlert from '../components/app/PopAlert.vue'
 
 Vue.use(VueRouter)
 
@@ -14,7 +14,7 @@ const routes: Array<RouteConfig> = [
     {
       path: '/test',
       name: 'Test',
-      component: Popup
+      component: PopAlert
     },
     {
         path: '/register',

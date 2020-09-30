@@ -384,8 +384,6 @@
             this.language = lang;
           }
       }
-
-
     };
 </script>
 

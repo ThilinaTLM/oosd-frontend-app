@@ -9,6 +9,7 @@ class ApiConnection {
     conn: AxiosInstance
 
     private constructor() {
+        
         this.conn = axios.create({
             baseURL: DEV_REMOTE,
             timeout: 5000,

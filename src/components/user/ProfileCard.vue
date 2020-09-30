@@ -5,7 +5,7 @@
                 <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light">
             </v-list-item-avatar>
             <v-list-item-content>
-                <v-list-item-title class="title"> {{firstName}} {{lastName}}</v-list-item-title>
+                <v-list-item-title class="subtitle-1 font-weight-bold"> {{firstName}} {{lastName}}</v-list-item-title>
                 <v-list-item-subtitle class="subtitle-2"> {{role}}</v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>

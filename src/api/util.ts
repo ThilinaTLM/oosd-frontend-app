@@ -16,6 +16,26 @@ export const utilApi = {
             const res = await apiConn.get('util/all-divs')
             return [res.data.data, toStatus(res)]
         } catch (e) {
+            console.log(e.response.data)
+            return [e.response.data.data, toStatus(e.response)]
+        }
+    },
+
+    async addGNOffice(name: string, address: string): Promise<Status> {
+        try {
+            const res = await apiConn.post('util/add-gn-office', {name, address})
+            return toStatus(res)
+        } catch (e) {
+            return toStatus(e.response)
+        }
+    },
+
+    async getAllGNOffices(): Promise<[any[], Status]> {
+        try {
+            const res = await apiConn.get('util/all-gn-offices')
+            return [res.data.data, toStatus(res)]
+        } catch (e) {
+            console.log(e.response.data)
             return [e.response.data.data, toStatus(e.response)]
         }
     }

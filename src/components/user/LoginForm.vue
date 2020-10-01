@@ -77,7 +77,7 @@
                     })
                 } else {
                     this.$store.commit('app/SHOW_MSG', {
-                        text: 'Incorrect username or password',
+                        text: status.message,
                         type: 'error'
                     })
                 }

@@ -4,9 +4,10 @@
             rounded
             timeout="5000"
             dark
+            tile
             v-model="show"
     >
-        <v-alert :type="type" style="font-size: 11pt">
+        <v-alert tile :type="type" style="font-size: 11pt">
             {{text}}
             <template v-slot:close>
 

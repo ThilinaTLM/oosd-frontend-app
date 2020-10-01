@@ -11,13 +11,16 @@
             <ProfileCard/>
         </template>
 
-        <v-divider></v-divider>
+        <v-divider />
 
         <v-list
                 dense
                 nav
         >
             <NavItem name="Dashboard" icon="mdi-view-dashboard" link="/app"/>
+
+            <v-divider />
+
             <NavItem
                     v-for="item in navItemData"
                     :key="item.name"

@@ -1,5 +1,23 @@
 <template>
-    <img alt="Home" @click="$router.push('/')" src="@/assets/gov-logo.svg" class="logo" height="100%"/>
+    <v-tooltip right>
+        <template v-slot:activator="{on, attrs}"  >
+    <v-btn
+            absolute
+            fab
+            small
+            v-bind="attrs"
+            v-on="on"
+            color="secondary"
+            class="logo"
+            to="/"
+    >
+        <v-icon color="black">mdi-home</v-icon>
+    </v-btn>
+
+        </template>
+        <span>Home</span>
+    </v-tooltip>
+
 </template>
 
 <script>
@@ -10,18 +28,7 @@
 
 <style scoped>
     .logo {
-        cursor: pointer;
-        height: 80%;
-        margin: 5px;
-        box-shadow: #000000 0 0 5px;
-        border: solid 1px #fff200;
-        border-radius: 50%;
-        transition: all 200ms;
+        top: 20px;
+        left: 20px;
     }
-
-    .logo:hover {
-        box-shadow: white 0 0 10px;
-        background-color: white;
-    }
-
 </style>

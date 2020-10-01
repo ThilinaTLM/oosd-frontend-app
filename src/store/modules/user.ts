@@ -48,6 +48,7 @@ export const actions: ActionTree<UserState, RootState> = {
             store.dispatch('setLocalStorage')
             api.token.set(data.token)
         }
+        console.log(status)
         return status
     },
 

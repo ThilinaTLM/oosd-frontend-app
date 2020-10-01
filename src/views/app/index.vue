@@ -12,16 +12,12 @@
                     @toggle="(args) => this.drawer = args"
             />
 
+            <AddressBar class="ma-1"/>
+
             <v-spacer/>
 
-            <v-btn
-                    icon
-                    small
-                    color="dark"
-                    class="ma-3"
-            >
-                <v-icon>mdi-bell</v-icon>
-            </v-btn>
+            <AppNotification />
+            <AppMenu />
         </v-app-bar>
 
         <NavDrawer :toggle="drawer" @close="$store.commit('app/SHOW_MSG', {text:'Closed'})"/>
@@ -42,10 +38,16 @@
     import NavDrawer from "../../components/app/nav-drawer/NavDrawer";
     import DrawerToggle from "../../components/app/nav-drawer/DrawerToggle";
     import PopAlert from "../../components/PopAlert";
+    import AddressBar from "../../components/app/AddressBar";
+    import AppMenu from "../../components/app/AppMenu";
+    import AppNotification from "../../components/app/AppNotification";
 
     export default {
         name: "App",
         components: {
+            AppNotification,
+            AppMenu,
+            AddressBar,
             NavDrawer,
             DrawerToggle,
             PopAlert

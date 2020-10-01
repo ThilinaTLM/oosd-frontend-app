@@ -10,7 +10,8 @@
             </v-container>
 
         </v-main>
-        <PopAlert/>
+        <PopAlert />
+        <HomeButton />
 
     </v-app>
 </template>
@@ -18,10 +19,12 @@
 <script>
     import RegisterForm from "../components/user/RegisterForm";
     import PopAlert from "../components/PopAlert";
+    import HomeButton from "../components/home/HomeButton";
 
     export default {
         name: "Register",
         components: {
+            HomeButton,
             PopAlert,
             RegisterForm
         }

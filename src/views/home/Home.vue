@@ -376,7 +376,6 @@
     export default {
         name: "Home",
         components: {
-            HomeButton,
             LoginButton,
             FooterCard,
             ProgressIndicator,

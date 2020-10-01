@@ -8,7 +8,7 @@ function bn(name: string, icon: string, link: string): NavItemData {
     return {name, icon, link}
 }
 
-const draft     = bn('Drafts', 'mdi-file-document-edit', '')
+const draft     = bn('Drafts', 'mdi-file-document-edit', '/app/complaint/drafts')
 const create    = bn('Add New', 'mdi-file-plus', '/app/complaint/create-new')
 const approved  = bn('Approved', 'mdi-file-certificate', '')
 const received  = bn('Processed', 'mdi-file-replace', '')

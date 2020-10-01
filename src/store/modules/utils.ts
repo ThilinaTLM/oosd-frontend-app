@@ -6,12 +6,27 @@ type Office = { name: string, address: string }
 
 export interface UtilsData {
     divisions: Office[],
-    gn_offices: Office[]
+    gn_offices: Office[],
+    roles: string[],
+    comTypes: string[]
 }
 
 const state: UtilsData = {
     divisions: [],
-    gn_offices: []
+    gn_offices: [],
+    roles: [
+        'Administrator',
+        'District Officer',
+        'District Secretariat',
+        'Divisional Officer',
+        'Divisional Secretariat'
+    ],
+    comTypes: [
+        'Direct',
+        'By Presidential Office',
+        'By Prime Minister Office',
+        'Third-party Department'
+    ]
 }
 
 const mutations: MutationTree<UtilsData> = {

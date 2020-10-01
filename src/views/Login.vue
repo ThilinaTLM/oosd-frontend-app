@@ -12,6 +12,7 @@
                 <v-spacer/>
             </v-container>
         </v-main>
+        <HomeButton />
         <PopAlert/>
     </v-app>
 </template>
@@ -19,13 +20,15 @@
 <script>
     import {mapGetters} from 'vuex'
     import store from '../store'
-    import LoginForm from "@/components/user/LoginForm.vue";
+    import LoginForm from "../components/user/LoginForm.vue";
     import LoggedInfo from "../components/user/LoggedInfo";
     import PopAlert from "../components/PopAlert";
+    import HomeButton from "../components/home/HomeButton";
 
     export default {
         name: 'Login',
         components: {
+            HomeButton,
             PopAlert,
             LoginForm,
             LoggedInfo

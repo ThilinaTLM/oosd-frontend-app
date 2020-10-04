@@ -57,7 +57,7 @@
             text
             color="secondary"
             class="ma-2"
-            to="/add-complaint"
+            to="/"
         >
           Cancel
         </v-btn>

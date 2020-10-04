@@ -2,7 +2,7 @@
 
   <div>
 
-    <v-form ref="newCustomerAddition" @submit.prevent="$emit('submit',{NIC, fullname, email, telephone, address, dsoffice, gnoffice})">
+    <v-form v-model="valid" ref="newCustomerAddition" @submit.prevent="submit" lazy-validation>
       <v-container>
 
         <v-row style="display: flex; ">
@@ -14,8 +14,8 @@
             <v-text-field
                 v-model="NIC"
                 label="NIC"
+                :rules="rules.nic"
                 required
-
                 prepend-icon="mdi-account-circle"
             ></v-text-field>
           </v-col>
@@ -83,7 +83,7 @@
             <v-select
                 v-model="dsoffice"
                 label="Divisional Secretariat"
-                :items="items"
+                :items="divisions"
                 prepend-icon="mdi-account-circle"
                 required
             ></v-select>
@@ -93,7 +93,7 @@
             <v-select
                 v-model="gnoffice"
                 label="GN Office"
-                :items="items"
+                :items="gnoffices"
                 required
                 prepend-icon="mdi-account-circle"
             ></v-select>
@@ -108,6 +108,7 @@
               class="ma-2"
               type="submit"
               :loading="loading"
+              :disabled="!valid"
           >
             Continue
           </v-btn>
@@ -140,12 +141,64 @@ export default {
   name: "customerdetails",
   data(){
     return{
-      items:["Akmeemana","Ambalangoda","Baddegama","Balapitiya","Bope-poddala","Benthota","Elpitiya","Galle Four Gravets","Habaraduwa","Imaduwa","Hikkaduwa","Karandeniya","Nagoda","Neluwa","Niyagama","Welivitiya-Divithura","Yakkalamulla","Gonapinuwala"]
+
+      valid: false,
+      loading:false,
+
+      NIC: '',
+      fullname: '',
+      email: '',
+      telephone: '',
+      address:'',
+      dsoffice: '',
+      gnoffice: '',
+
+      rules:{
+        nic:[
+            s => s.length > 12? true : "Invalid NIC"
+        ]
+      }
+
     }
   },
-  props:[
-      "fullname", "NIC", "email", "Telephone", "Address", "dsoffice", "gnoffice"
-  ]
+  computed: {
+    divisions() {
+      const divisions = this.$store.state.utils.divisions || []
+      for (let i = 0; i < divisions.length; i++) {
+        divisions[i] = divisions[i].name
+      }
+      return divisions
+    },
+    gnoffices() {
+      const gnoffice = this.$store.state.utils.gn_offices || []
+      for (let i = 0; i < gnoffice.length; i++) {
+        gnoffice[i] = gnoffice[i].name
+      }
+      return gnoffice
+    },
+  },
+
+  created() {
+    this.$store.dispatch('utils/loadDivisions');
+    this.$store.dispatch('utils/loadGNOffices');
+  },
+
+  methods:{
+
+    async submit() {
+      await this.$refs.newCustomerAddition.validate();
+      if(this.valid){
+
+        this.loading = true
+        const {NIC, fullname, email, telephone, address, dsoffice, gnoffice} = this
+        this.$emit('submit',{NIC, fullname, email, telephone, address, dsoffice, gnoffice});
+        this.loading = false;
+
+      }
+    },
+  }
+
+
 }
 </script>
 

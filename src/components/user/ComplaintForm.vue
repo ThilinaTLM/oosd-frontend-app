@@ -38,8 +38,6 @@
 
 <script>
 import {api} from "../../api";
-import RegStep1 from "../register/RegStep1";
-import RegStep2 from "../register/RegStep2";
 import Customerdetails from "@/components/complaint/customerdetails";
 import Complaintdetails from "@/components/complaint/complaintdetails";
 import Evidenceuploads from "@/components/complaint/evidenceuploads";
@@ -49,7 +47,7 @@ export default {
   components: {Evidenceuploads, Complaintdetails, Customerdetails},
   data: () => ({
     stepCount: 1,
-
+    loading:false,
     userData: {}
   }),
   methods: {
@@ -61,15 +59,15 @@ export default {
     async submitStep2(data) {
       Object.assign(this.userData, data)
       this.loading = true
-
+      const [_, status] = await api.user.register(this.userData)
+      if (status.code !== 200) {
+        console.log('Registration Failed')
+        return
+      }
+      this.loading = false
       this.stepCount = 3
     }
   },
-  created() {
-    this.$store.dispatch('utils/loadDivisions')
-  }
+
 }
 </script>
-
-<style scoped>
-</style>

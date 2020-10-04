@@ -8,7 +8,8 @@ export interface UtilsData {
     divisions: Office[],
     gn_offices: Office[],
     roles: string[],
-    comTypes: string[]
+    comTypes: string[],
+    comStates: string[]
 }
 
 const state: UtilsData = {
@@ -26,7 +27,37 @@ const state: UtilsData = {
         'By Presidential Office',
         'By Prime Minister Office',
         'Third-party Department'
+    ],
+    comStates: [
+        'Draft',
+        'Awaiting Approval',
+        'Approved',
+        'Awaiting Accept',
+        'In Progress',
+        'Awaiting Div Sec Review',
+        'Div Sec Reviewed',
+        'Awaiting Dis Sec Reviewed',
+        'Dis Sec Reviewed',
+        'Solved',
+        'Rejected'
     ]
+}
+
+const getters: GetterTree<UtilsData, RootState> = {
+    getNameOnly_Divisions(state) {
+        const name_only = []
+        for (let i  = 0; i < state.divisions.length; i++) {
+            name_only.push(state.divisions[i].name)
+        }
+        return name_only
+    },
+    getNameOnly_GnOffices(state) {
+        const name_only = []
+        for (let i  = 0; i < state.gn_offices.length; i++) {
+            name_only.push(state.gn_offices[i].name)
+        }
+        return name_only
+    }
 }
 
 const mutations: MutationTree<UtilsData> = {
@@ -81,6 +112,7 @@ const actions: ActionTree<UtilsData, RootState> = {
 export const utils_module: Module<UtilsData, RootState> = {
     namespaced: true,
     state,
+    getters,
     mutations,
     actions
 }

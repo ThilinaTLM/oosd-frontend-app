@@ -75,7 +75,7 @@
                 const [_, status] = await api.user.register(this.userData)
                 if (status.code !== 200) {
                     this.$store.commit('app/SHOW_MSG', {
-                      text: status.message
+                      text: status.message,
                       type: 'error'
                     })
                   this.loading = false

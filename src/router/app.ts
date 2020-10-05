@@ -30,6 +30,11 @@ export const appRoutes: Array<RouteConfig> = [
         path: 'complaint/drafts',
         name: 'DraftComplaint',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/DraftComplaint.vue')
+    },
+    {
+        path: 'complaint/view-complaint',
+        name:'ViewComplaint',
+        component: ()=> import(/* webpackChunkName: "web-app" */ '../views/app/Complaint.vue')
     }
 
 ]

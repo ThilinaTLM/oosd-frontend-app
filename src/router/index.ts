@@ -23,6 +23,12 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "user" */ '../views/Login.vue')
     },
     {
+        path:'/add-complaint',
+        name:'Add Comlpaint',
+        component: () => import(/* webpackChunkName: "complaint" */ '../views/AddComplaint.vue')
+
+    },
+    {
         path: '/app',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/index.vue'),
         children: appRoutes

@@ -88,7 +88,7 @@
             >
                 <v-spacer/>
                 <v-row style="justify-content: center">
-                    <v-btn color="error"> {{ lang.button }}</v-btn>
+                    <v-btn to="/add-complaint" color="error"> {{ lang.button }}</v-btn>
                 </v-row>
                 <v-spacer/>
             </v-container>
@@ -103,7 +103,7 @@
                         </v-container>
 
                         <v-container style="width: 20%">
-                            <v-btn color="error"> {{ lang.button }}</v-btn>
+                            <v-btn to="/add-complaint" color="error"> {{ lang.button }}</v-btn>
                         </v-container>
                     </v-row>
                 </v-container>

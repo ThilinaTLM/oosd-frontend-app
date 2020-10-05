@@ -74,8 +74,12 @@
                 this.loading = true
                 const [_, status] = await api.user.register(this.userData)
                 if (status.code !== 200) {
-                    console.log('Registration Failed')
-                    return
+                    this.$store.commit('app/SHOW_MSG', {
+                      text: status.message,
+                      type: 'error'
+                    })
+                  this.loading = false
+                  return
                 }
                 this.loading = false
                 this.stepCount = 3

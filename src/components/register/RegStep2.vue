@@ -94,7 +94,7 @@
             email: '',
             telephoneNumber: '',
             role: '',
-            office: '',
+            office: ''
         }),
         computed: {
             divisions() {

@@ -4,6 +4,7 @@
       style="padding:2% 5%"
       ref="form"
       @submit.prevent="$emit('submit',{referencenumber, subject, description})"
+      v-model="valid"
   >
 
     <v-container>
@@ -47,7 +48,7 @@
             class="ma-2"
             type="submit"
             :loading="loading"
-
+            :disabled="!valid"
         >
           Submit
         </v-btn>
@@ -77,7 +78,14 @@ export default {
     "description",
     "subject",
     "referencenumber"
-  ]
+  ],
+  data(){
+    return{
+      valid:false,
+      loading:false,
+
+    }
+  }
 }
 </script>
 

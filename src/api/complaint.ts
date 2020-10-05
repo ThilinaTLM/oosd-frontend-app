@@ -20,7 +20,6 @@ export const complaintApi = {
         }
     },
 
-
     async getComplaints(condition: any): Promise<[any[], Status]> {
         try {
             const res = await apiConn.get(`complaint/get-complaint`, condition)

@@ -137,6 +137,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "customerdetails",
   data(){

@@ -27,7 +27,6 @@
 
           <!-- Complaint Log Section  -->
 
-
           <v-expansion-panels
               v-model="panel"
 

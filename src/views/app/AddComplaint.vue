@@ -1,115 +1,92 @@
 <template>
-  <v-container>
+  <v-container fluid class="pl-10 pr-10">
+
     <v-card-title>Add New Complaint</v-card-title>
     <v-divider></v-divider>
 
+    <v-stepper v-model="stepCount" vertical>
 
-    <v-stepper
-        v-model="e6"
-        vertical
-    >
-
-      <!-- customer details section -->
-
-      <v-stepper-step
-          :complete="e6 > 1"
-          step="1"
-      >
+      <v-stepper-step :complete="stepCount > 1" step="1">
         Customer Details
-
       </v-stepper-step>
-
       <v-stepper-content step="1">
-        <v-card
-            color=" lighten-1"
-            class="mb-12 elevation-0"
-            style="padding: 1% 2%"
-        >
-
-          <Customerdetails  @submit="e6 = 2"/>
-
+        <v-card color="lighten-1" class="mb-12 ml-10 mr-10 elevation-0">
+          <CustomerDetails @submit="submitCustomer" @cancel="cancel"/>
         </v-card>
-
-
       </v-stepper-content>
 
-
-      <!-- Complaint Details Section -->
-
-
-      <v-stepper-step
-          :complete="e6 > 2"
-          step="2"
-      >
-        Customer Grievance Details
+      <v-stepper-step :complete="stepCount > 2" step="2">
+        Grievance Details
       </v-stepper-step>
-
       <v-stepper-content step="2">
-        <v-card
-            color=" lighten-1"
-            class="mb-5 elevation-0"
-
-        >
-
-          <complaintdetails @submit="e6=3" />
-
+        <v-card color="lighten-1" class="mb-12 ml-10 mr-10 elevation-0">
+          <ComplaintDetails :loading="loading" @submit="submitComplaint" @cancel="cancel"/>
         </v-card>
-
       </v-stepper-content>
 
-      <!-- Upload Evidences Section -->
 
       <v-stepper-step
-          :complete="e6 > 3"
-          step="3"
+              :complete="stepCount > 3"
+              step="3"
       >
         Upload Evidences
       </v-stepper-step>
-
       <v-stepper-content step="3">
-        <v-card
-            color=" lighten-1"
-            class="mb-5 elevation-0"
-        >
-
-          <evidenceuploads />
-
+        <v-card color="lighten-1" class="mb-12 ml-10 mr-10 elevation-0">
+            <UploadEvidences :complaint-id="complaintData.complaintId" />
         </v-card>
-
       </v-stepper-content>
-
 
     </v-stepper>
 
-
-
   </v-container>
-
-
 </template>
 
 <script>
-
-import Customerdetails from "@/components/complaint/customerdetails";
-import Evidenceuploads from "@/components/complaint/evidenceuploads";
-import Complaintdetails from "@/components/complaint/complaintdetails";
+import CustomerDetails from "../../components/complaint/CustomerDetails";
+import ComplaintDetails from "../../components/complaint/ComplaintDetails";
+import {api} from "../../api";
+import UploadEvidences from "../../components/complaint/UploadEvidences";
 
 export default {
-  name: "AddComplaint",
-  components: {Complaintdetails, Evidenceuploads, Customerdetails},
-  data () {
-    return {
-      e6: 1,
-      }
-  },
+    name: "AddComplaint",
+    components: {
+        UploadEvidences,
+        ComplaintDetails,
+        CustomerDetails
+    },
+    data: () => ({
+        stepCount: 1,
+        loading: false,
+        complaintData: {
+            complaintId: '',
+            customerId: ''
+        }
+    }),
+    methods: {
+        async submitCustomer(customerId) {
+            this.complaintData.customerId = customerId
+            this.stepCount = 2
+        },
 
+        async submitComplaint(data) {
+            this.loading = true
+            Object.assign(this.complaintData, data)
+            const [complaintId, status] = await api.complaint.addComplaint(this.complaintData)
+            if (status.code !== 200) {
+                this.$notify(status.message, 'error')
+                this.loading = false
+                return;
+            }
+            this.complaintData.complaintId = complaintId
+            this.loading = false
+            this.stepCount = 3
+            this.$notify('Complaint Added Successfully', 'success')
+        },
 
-
+        cancel() {
+            this.$router.back()
+        }
+    }
 }
 </script>
-
-<style scoped>
-
-
-
-</style>

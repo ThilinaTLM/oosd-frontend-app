@@ -63,6 +63,11 @@
                 return;
             }
             next();
+        },
+
+        async created() {
+            await store.dispatch('utils/loadDivisions')
+            await store.dispatch('utils/loadGNOffices')
         }
     }
 </script>

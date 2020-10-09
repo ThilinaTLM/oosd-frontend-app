@@ -23,10 +23,11 @@ const state: UtilsData = {
         'Divisional Secretariat'
     ],
     comTypes: [
-        'Direct',
+        'Direct to Division',
+        'Direct to District',
         'By Presidential Office',
         'By Prime Minister Office',
-        'Third-party Department'
+        'By Third-party Department'
     ],
     comStates: [
         'Draft',

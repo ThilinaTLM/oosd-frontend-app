@@ -6,7 +6,7 @@
           class="fill-height"
           style="padding-left: 25%; padding-right: 25%"
       >
-        <complaint-form />
+        <ComplaintForm />
       </v-container>
 
     </v-main>
@@ -20,7 +20,7 @@
 
 
 import HomeButton from "../components/home/HomeButton";
-import ComplaintForm from "@/components/user/ComplaintForm";
+import ComplaintForm from "../components/user/ComplaintForm";
 
 export default {
   name: "AddComplaint",

@@ -1,24 +1,33 @@
 <template>
-  <v-container>
+  <v-container class="pl-10 pr-10">
     <DataTable :loading="loading" :items="complaints" :headers="headers">
       <template v-slot:item-action="{item}">
         <v-btn
-            v-if="item.assignedDiv == null"
-            dark
             x-small
             rounded
-            color="success"
+            color="blue"
             class="ma-1"
+            v-if="item.assignedDiv === null"
             @click="dialogBox = true"
         >
           Assign
         </v-btn>
         <v-btn
-            dark
+                x-small
+                rounded
+                color="blue"
+                class="ma-1"
+                v-if="item.assignedDiv !== null"
+                @click="dialogBox = true"
+        >
+          ReAssign
+        </v-btn>
+        <v-btn
             x-small
             rounded
             color="red"
             class="ma-1"
+            v-if="item.assignedDiv !== null"
         >
           Forward
         </v-btn>
@@ -81,7 +90,7 @@ export default {
   methods: {
     // async verifyUser(user) {
     //     this.loading = true;
-    //     const status = await api.user.verifyUser(user.userId)
+    //     const status = await notificator.user.verifyUser(user.userId)
     //     if (status.code === 200) {
     //         user.verified = 1
     //     }
@@ -90,7 +99,7 @@ export default {
     //
     // async disableUser(user) {
     //     this.loading = true;
-    //     const status = await api.user.disableUser(user.userId)
+    //     const status = await notificator.user.disableUser(user.userId)
     //     if (status.code === 200) {
     //         user.verified = 0
     //     }

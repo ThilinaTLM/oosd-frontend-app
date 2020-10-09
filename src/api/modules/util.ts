@@ -4,7 +4,7 @@ import {toStatus, Status} from "@/api/core";
 export const utilApi = {
     async addDivision(name: string, address: string): Promise<Status> {
         try {
-            const res = await apiConn.post('util/add-div', {name, address})
+            const res = await apiConn.post('api/util/add-div', {name, address})
             return toStatus(res)
         } catch (e) {
             return toStatus(e.response)
@@ -13,7 +13,7 @@ export const utilApi = {
 
     async getAllDivisions(): Promise<[any[], Status]> {
         try {
-            const res = await apiConn.get('util/all-divs')
+            const res = await apiConn.get('api/util/all-divs')
             return [res.data.data, toStatus(res)]
         } catch (e) {
             console.log(e.response.data)
@@ -23,7 +23,7 @@ export const utilApi = {
 
     async addGNOffice(name: string, address: string): Promise<Status> {
         try {
-            const res = await apiConn.post('util/add-gn-office', {name, address})
+            const res = await apiConn.post('api/util/add-gn-office', {name, address})
             return toStatus(res)
         } catch (e) {
             return toStatus(e.response)
@@ -32,7 +32,7 @@ export const utilApi = {
 
     async getAllGNOffices(): Promise<[any[], Status]> {
         try {
-            const res = await apiConn.get('util/all-gn-offices')
+            const res = await apiConn.get('api/util/all-gn-offices')
             return [res.data.data, toStatus(res)]
         } catch (e) {
             console.log(e.response.data)

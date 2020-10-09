@@ -9,7 +9,7 @@ export const userApi = {
      */
     async checkUsername(username: string): Promise<[boolean, Status]> {
         try {
-            const res = await apiConn.get(`user/check-username/${username}`)
+            const res = await apiConn.get(`api/user/check-username/${username}`)
             return [res.data.data, toStatus(res)]
         } catch (e) {
             return [e.response.data.data, toStatus(e.response)]
@@ -23,7 +23,7 @@ export const userApi = {
      */
     async register(userData: any): Promise<[string, Status]> {
       try {
-          const res = await apiConn.post('user/register', userData)
+          const res = await apiConn.post('api/user/register', userData)
           return [res.data.data, toStatus(res)]
       } catch (e) {
           return [e.response.data.data, toStatus(e.response)]
@@ -38,7 +38,7 @@ export const userApi = {
      */
     async login(username: string, password: string): Promise<[any, Status]> {
         try {
-            const res = await apiConn.post('user/login', {username, password});
+            const res = await apiConn.post('api/user/login', {username, password});
             const {token, data} = res.data;
             return [{token, userData:data}, toStatus(res)];
         } catch (e) {
@@ -52,25 +52,33 @@ export const userApi = {
      */
     async getUser(condition: any): Promise<[any, Status]> {
         try {
-            const res = await apiConn.get('user/get-user');
+            const res = await apiConn.get('api/user/get-user');
             return [res.data.data, toStatus(res)];
         } catch (e) {
             return [null, toStatus(e.response)]
         }
     },
 
+    /**
+     * Verify User Account
+     * @param userId
+     */
     async verifyUser(userId: string): Promise<Status> {
         try {
-            const res = await apiConn.put(`user/verify-user/${userId}`);
+            const res = await apiConn.put(`api/user/verify-user/${userId}`);
             return toStatus(res);
         } catch (e) {
             return toStatus(e.response)
         }
     },
 
+    /**
+     * Disable User Account
+     * @param userId
+     */
     async disableUser(userId: string): Promise<Status> {
         try {
-            const res = await apiConn.put(`user/disable-user/${userId}`);
+            const res = await apiConn.put(`api/user/disable-user/${userId}`);
             return toStatus(res);
         } catch (e) {
             return toStatus(e.response)

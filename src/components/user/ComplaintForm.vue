@@ -16,19 +16,14 @@
 
       <v-stepper-items>
         <v-stepper-content step="1" class="pa-10">
-            <customerdetails @submit="submitStep1" />
-<!--          <RegStep1 @submit="submitStep1"/>-->
+            <CustomerDetails @submit="submitStep1" />
         </v-stepper-content>
 
         <v-stepper-content step="2" class="pa-10">
-          <complaintdetails @submit="submitStep2" />
+          <CustomerDetails @submit="submitStep2" />
         </v-stepper-content>
 
         <v-stepper-content step="3" class="pa-10">
-          <Evidenceuploads />
-
-
-
 
         </v-stepper-content>
       </v-stepper-items>
@@ -38,13 +33,14 @@
 
 <script>
 import {api} from "../../api";
-import Customerdetails from "@/components/complaint/customerdetails";
-import Complaintdetails from "@/components/complaint/complaintdetails";
-import Evidenceuploads from "@/components/complaint/evidenceuploads";
+import CustomerDetails from "../complaint/CustomerDetails.vue";
+
 
 export default {
   name: "ComplaintForm",
-  components: {Evidenceuploads, Complaintdetails, Customerdetails},
+  components: {
+    CustomerDetails
+  },
   data: () => ({
     stepCount: 1,
     loading:false,

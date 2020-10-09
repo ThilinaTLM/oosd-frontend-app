@@ -13,7 +13,9 @@ export const complaintApi = {
 
     async addAttachment(complaintId: string, attachmentId: string): Promise<Status> {
         try {
-            const res = await apiConn.post(`complaint/add-attachment/${complaintId}/${attachmentId}`)
+            const res = await apiConn.post(`api/complaint/add-attachment/${complaintId}`, {
+                attachmentId
+            })
             return toStatus(res)
         } catch (e) {
             return toStatus(e.response)
@@ -22,7 +24,7 @@ export const complaintApi = {
 
     async getComplaints(condition: any): Promise<[any[], Status]> {
         try {
-            const res = await apiConn.get(`complaint/get-complaint`, condition)
+            const res = await apiConn.get(`api/complaint/get-complaint`, condition)
             return [res.data.data, toStatus(res)]
         } catch (e) {
             return [[], toStatus(e.response)]
@@ -31,7 +33,7 @@ export const complaintApi = {
 
     async getAttachments(complaintId: string): Promise<[any[], Status]> {
         try {
-            const res = await apiConn.get(`get-attachments/${complaintId}`)
+            const res = await apiConn.get(`api/get-attachments/${complaintId}`)
             return [res.data.data, toStatus(res)]
         } catch (e) {
             return [[], toStatus(e.response)]

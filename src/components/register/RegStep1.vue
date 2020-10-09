@@ -44,11 +44,10 @@
         </v-btn>
 
         <v-btn
-                rounded
-                text
                 color="secondary"
+                rounded
                 class="ma-2"
-                to="/login"
+                @click="$emit('cancel')"
         >
             Cancel
         </v-btn>

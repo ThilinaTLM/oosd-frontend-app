@@ -16,11 +16,11 @@
 
             <v-stepper-items>
                 <v-stepper-content step="1" class="pa-10">
-                    <RegStep1 @submit="submitStep1"/>
+                    <RegStep1 @submit="submitStep1" @cancel="cancel" />
                 </v-stepper-content>
 
                 <v-stepper-content step="2" class="pa-10">
-                    <RegStep2 @submit="submitStep2" :loading="loading" />
+                    <RegStep2 @submit="submitStep2" @cancel="cancel" :loading="loading" />
                 </v-stepper-content>
 
                 <v-stepper-content step="3" class="pa-10">
@@ -74,15 +74,16 @@
                 this.loading = true
                 const [_, status] = await api.user.register(this.userData)
                 if (status.code !== 200) {
-                    this.$store.commit('app/SHOW_MSG', {
-                      text: status.message,
-                      type: 'error'
-                    })
+                    this.$notify(status.message, 'error')
                   this.loading = false
                   return
                 }
                 this.loading = false
                 this.stepCount = 3
+            },
+
+            cancel() {
+                this.$router.back();
             }
         },
         created() {

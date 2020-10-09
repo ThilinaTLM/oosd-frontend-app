@@ -1,11 +1,11 @@
-import {Status, toStatus} from "@/api/core";
-import {apiConn} from "@/api/conn";
+import { Status, toStatus } from "@/api/core";
+import { apiConn } from "@/api/conn";
 
 
 export const customerApi = {
     async addCustomer(customerData: any): Promise<[string, Status]> {
         try {
-            const res = await apiConn.post('customer/add', customerData)
+            const res = await apiConn.post('api/customer/add-customer', customerData)
             return [res.data.data, toStatus(res)]
         } catch (e) {
             return ['', toStatus(e.response)]
@@ -14,7 +14,7 @@ export const customerApi = {
 
     async getCustomer(condition: any): Promise<[any[], Status]> {
         try {
-            const res = await apiConn.get('customer/get-customer', condition)
+            const res = await apiConn.get('api/customer/get-customer', condition)
             return [res.data.data, toStatus(res)]
         } catch (e) {
             return [[], toStatus(e.response)]
@@ -23,7 +23,7 @@ export const customerApi = {
 
     async updateCustomer(customerId: string, customerData: any): Promise<Status> {
         try {
-            const res = await apiConn.put(`customer/update-customer/${customerId}`, customerData)
+            const res = await apiConn.put(`api/customer/update-customer/${customerId}`, customerData)
             return toStatus(res)
         } catch (e) {
             return toStatus(e.response)

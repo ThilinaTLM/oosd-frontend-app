@@ -7,7 +7,7 @@
                         label="First Name"
                         type="text"
                         required
-                        v-model="firstName"
+                        v-model="userData.firstName"
                 ></v-text-field>
             </v-col>
             <v-col>
@@ -16,7 +16,7 @@
                         label="Last Name"
                         type="text"
                         required
-                        v-model="lastName"
+                        v-model="userData.lastName"
                 ></v-text-field>
             </v-col>
         </v-row>
@@ -26,7 +26,7 @@
                 label="Email"
                 type="text"
                 required
-                v-model="email"
+                v-model="userData.email"
         ></v-text-field>
 
         <v-text-field
@@ -34,7 +34,7 @@
                 label="Telephone"
                 type="text"
                 required
-                v-model="telephoneNumber"
+                v-model="userData.telephoneNumber"
         ></v-text-field>
 
         <v-row>
@@ -43,16 +43,16 @@
                         prepend-icon="mdi-format-list-bulleted"
                         label="Type"
                         :items="roles"
-                        v-model="role"
+                        v-model="userData.role"
                 ></v-select>
             </v-col>
             <v-col>
                 <v-select
-                        v-if="role.includes('Divisional')"
+                        v-if="userData.role.includes('Divisional')"
                         prepend-icon="mdi-home-account"
                         label="Division"
                         :items="divisions"
-                        v-model="office"
+                        v-model="userData.office"
                 ></v-select>
             </v-col>
         </v-row>
@@ -73,7 +73,7 @@
                 color="secondary"
                 rounded
                 class="ma-2"
-                to="/login"
+                @click="$emit('cancel')"
         >
             Cancel
         </v-btn>
@@ -88,21 +88,18 @@
         ],
         data: () => ({
             valid: false,
-
-            firstName: '',
-            lastName: '',
-            email: '',
-            telephoneNumber: '',
-            role: '',
-            office: ''
+            userData: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                telephoneNumber: '',
+                role: '',
+                office: ''
+            }
         }),
         computed: {
             divisions() {
-                const divisions = this.$store.state.utils.divisions || []
-                for (let i = 0; i < divisions.length; i++) {
-                    divisions[i] = divisions[i].name
-                }
-                return divisions
+                return this.$store.getters["utils/getNameOnly_Divisions"]
             },
             roles() {
                 return this.$store.state.utils.roles
@@ -111,31 +108,12 @@
         methods: {
             submit() {
                 if (this.valid) {
-                    if (!this.needOffice()) {
-                        this.office = null
+                    if (!this.userData.role.includes('Divisional')) {
+                        delete this.userData.office
                     }
-                    const {
-                        firstName, lastName,
-                        email,
-                        telephoneNumber,
-                        role,
-                        office
-                    } = this
-                    this.$emit('submit', {
-                        firstName, lastName,
-                        email,
-                        telephoneNumber,
-                        role,
-                        office
-                    })
-                }
-            },
 
-            needOffice() {
-                if (this.role || this.role.includes('Divisional')) {
-                    return true
+                    this.$emit('submit', this.userData)
                 }
-                return false
             }
         }
     }

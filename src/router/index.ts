@@ -24,7 +24,7 @@ const routes: Array<RouteConfig> = [
     },
     {
         path:'/add-complaint',
-        name:'Add Comlpaint',
+        name:'Add Complaint',
         component: () => import(/* webpackChunkName: "complaint" */ '../views/AddComplaint.vue')
 
     },

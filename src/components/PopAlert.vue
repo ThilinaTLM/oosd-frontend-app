@@ -1,50 +1,41 @@
 <template>
-    <v-snackbar
-            right
-            rounded
-            timeout="5000"
-            dark
-            tile
-            v-model="show"
-    >
-        <v-alert tile :type="type" style="font-size: 11pt">
-            {{text}}
-            <template v-slot:close>
-
-                <v-btn
-                        dark
-                        icon
-                        small
-                        style="margin-left: 5px"
-                        @click="show = false"
-                >
-                    <v-icon>mdi-close</v-icon>
-                </v-btn>
-            </template>
-        </v-alert>
-    </v-snackbar>
+  <v-snackbar
+          right
+          rounded
+          timeout="7000"
+          dark
+          tile
+          v-model="notifyData.isShow"
+  >
+    <v-alert width="103%" tile :type="notifyData.type" style="font-size: 11pt">
+      {{ notifyData.text }}
+      <template v-slot:close>
+        <v-btn
+                dark
+                icon
+                small
+                class="ml-1"
+                @click="notifyData.isShow = false"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-alert>
+  </v-snackbar>
 </template>
 
 <script>
-    export default {
-        name: "PopAlert",
-        computed: {
-            show: {
-                get() {
-                    return this.$store.state.app.showMessage
-                },
-                set(newValue) {
-                    return this.$store.state.app.showMessage = newValue
-                }
-            },
-
-            text() {
-                return this.$store.state.app.message.text
-            },
-
-            type() {
-                return this.$store.state.app.message.type
-            }
+export default {
+    name: "PopAlert",
+    data: () => ({
+        notifyData: {
+            isShow: false,
+            text: 'Welcome',
+            type: 'info'
         }
+    }),
+    created() {
+        this.$setListener(this.notifyData)
     }
+}
 </script>

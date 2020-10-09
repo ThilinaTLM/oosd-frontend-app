@@ -16,7 +16,9 @@
             label="Quick Search"
             outlined
             hide-details
+            rounded
             dense
+            filled
             v-model="search"
         ></v-text-field>
       </div>

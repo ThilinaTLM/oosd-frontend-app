@@ -9,17 +9,17 @@ export const appRoutes: Array<RouteConfig> = [
     {
         path: 'utils/divisions',
         name: 'DivisionalOffices',
-        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/Division.vue')
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/admin/Division.vue')
     },
     {
         path: 'utils/gn-offices',
         name: 'GnOffices',
-        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/GnOffice.vue')
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/admin/GnOffice.vue')
     },
     {
         path: 'utils/user-accounts',
         name: 'UserAccounts',
-        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/UserList.vue')
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/admin/UserList.vue')
     },
     {
         path: 'complaint/create-new',
@@ -31,10 +31,10 @@ export const appRoutes: Array<RouteConfig> = [
         name: 'DraftComplaint',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/DraftComplaint.vue')
     },
-    {
-        path: 'complaint/view-complaint',
-        name:'ViewComplaint',
-        component: ()=> import(/* webpackChunkName: "web-app" */ '../views/app/Complaint.vue')
-    }
+    // {
+    //     path: 'complaint/view-complaint',
+    //     name:'ViewComplaint',
+    //     component: ()=> import(/* webpackChunkName: "web-app" */ '../views/app/Complaint.vue')
+    // }
 
 ]

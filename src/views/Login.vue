@@ -1,4 +1,3 @@
-+
 <template>
     <v-app>
         <v-main class="bg2">
@@ -42,9 +41,3 @@
         }
     }
 </script>
-
-<style>
-    /* html {
-        overflow-y: hidden;
-    } */
-</style>

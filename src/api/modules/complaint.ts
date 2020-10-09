@@ -4,7 +4,7 @@ import {apiConn} from "@/api/conn";
 export const complaintApi = {
     async addComplaint(complaintData: any): Promise<[string, Status]> {
         try {
-            const res = await apiConn.post('complaint/add-complaint', complaintData)
+            const res = await apiConn.post('api/complaint/add-complaint', complaintData)
             return [res.data.data, toStatus(res)]
         } catch (e) {
             return ['', toStatus(e.response)]

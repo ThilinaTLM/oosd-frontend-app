@@ -10,7 +10,7 @@
                 label="NIC"
                 required
                 prepend-icon="mdi-card-account-details"
-                :append-icon="loadingCustomer? 'mdi-spin mdi-chart-donut' : 'mdi-checkbox-marked-circle-outline'"
+                :append-icon="actionIcon"
                 @click:append="checkCustomer"
                 v-model="customerData.nic"
                 :rules="rules.nic"
@@ -106,7 +106,7 @@
               rounded
               class="ma-2"
               type="submit"
-              :loading="loadingCustomer"
+              :loading="loading"
               :disabled="!valid"
       >
         Save
@@ -165,11 +165,19 @@ export default {
         gnOffices() {
             return this.$store.getters["utils/getNameOnly_GnOffices"]
         },
+        actionIcon() {
+            if (this.loadingCustomer) {
+                return 'mdi-spin mdi-chart-donut'
+            } else {
+                return 'mdi-checkbox-marked-circle-outline'
+            }
+        }
     },
     methods: {
         async submit() {
             await this.$refs.form.validate();
             if (this.valid) {
+                this.loading = true
                 if (this.alreadyExists) {
                     this.$emit('submit', this.customerData.customerId);
                     return
@@ -178,10 +186,12 @@ export default {
                 const [customerId, status] = await api.customer.addCustomer(this.customerData)
                 if (status.code !== 200) {
                     this.$notify(status.message, 'error')
+                    this.loading = false
                     return
                 }
-                this.$notify('Customer Details are saved', 'success')
                 this.$emit('submit', customerId);
+                this.loading = false
+                this.$notify('Customer Details are saved', 'success')
             }
         },
         cancel() {
@@ -192,6 +202,7 @@ export default {
             const [data, status] = await api.customer.getCustomer({nic: this.customerData.nic})
             if (status.code !== 200) {
                 this.$notify(status.message, 'error')
+                this.loadingCustomer = false
                 return;
             }
             if (data.length > 0) {

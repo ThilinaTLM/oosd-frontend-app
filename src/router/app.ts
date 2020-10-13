@@ -7,6 +7,11 @@ export const appRoutes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/Dashboard.vue')
     },
     {
+        path: 'complaint/view/:complaintId',
+        name: 'View Complaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/Complaint.vue')
+    },
+    {
         path: 'utils/divisions',
         name: 'DivisionalOffices',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/admin/Division.vue')
@@ -24,12 +29,12 @@ export const appRoutes: Array<RouteConfig> = [
     {
         path: 'complaint/create-new',
         name: 'NewComplaint',
-        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/AddComplaint.vue')
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-officer/AddComplaint.vue')
     },
     {
         path: 'complaint/drafts',
         name: 'DraftComplaint',
-        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/DraftComplaint.vue')
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-officer/DraftComplaint.vue')
     },
     // {
     //     path: 'complaint/view-complaint',

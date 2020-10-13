@@ -99,24 +99,25 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-divider />
+    <v-row class="mt-5">
 
       <v-btn
               color="success"
-              rounded
-              class="ma-2"
+              class="ma-1"
               type="submit"
+              width="100"
               :loading="loading"
               :disabled="!valid"
       >
-        Save
+        {{submitButtonText}}
       </v-btn>
 
       <v-btn
-              rounded
               text
+              width="100"
               color="secondary"
-              class="ma-2"
+              class="ma-1"
               @click="cancel"
       >
         Cancel
@@ -171,6 +172,11 @@ export default {
             } else {
                 return 'mdi-checkbox-marked-circle-outline'
             }
+        },
+        submitButtonText() {
+            if (this.customerData.customerId === '')
+                return 'Save'
+            return 'Use'
         }
     },
     methods: {

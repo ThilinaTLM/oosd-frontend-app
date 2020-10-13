@@ -13,7 +13,21 @@ export const fileApi = {
         }
     },
 
-    async getAttachment() {
+    async getAttachment(attachmentId: string): Promise<[any, Status]>  {
+        try {
+            const res = await apiConn.get(`file/attachment/${attachmentId}`)
+            return [res.data.data, toStatus(res)]
+        } catch (e) {
+            return ['', toStatus(e.response)]
+        }
+    },
 
+    async getAttachmentDetails(attachmentId: string): Promise<[any, Status]>  {
+        try {
+            const res = await apiConn.get(`file/attachment/details/${attachmentId}`)
+            return [res.data.data, toStatus(res)]
+        } catch (e) {
+            return ['', toStatus(e.response)]
+        }
     }
 }

@@ -27,6 +27,12 @@
             HomeButton,
             PopAlert,
             RegisterForm
+        },
+        async created() {
+            const status = await this.$store.dispatch('utils/loadAll')
+            if (status.code !== 200) {
+                this.$notify("Something Wrong!", "error")
+            }
         }
     }
 </script>

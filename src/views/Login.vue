@@ -17,7 +17,6 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
     import store from '../store'
     import LoginForm from "../components/user/LoginForm.vue";
     import LoggedInfo from "../components/user/LoggedInfo";
@@ -33,7 +32,9 @@
             LoggedInfo
         },
         computed: {
-            ...mapGetters('user', ['isAuth'])
+            isAuth() {
+                return this.$store.getters["user/isAuth"]
+            }
         },
         async beforeRouteEnter(from, to, next) {
             await store.dispatch('user/loadLocalStorage')

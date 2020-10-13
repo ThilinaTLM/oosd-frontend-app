@@ -59,6 +59,24 @@ export const userApi = {
         }
     },
 
+    async updateUser(userId: string, data: any): Promise<Status> {
+        try {
+            const res = await apiConn.put(`api/user/update-user/${userId}`, data);
+            return toStatus(res);
+        } catch (e) {
+            return toStatus(e.response)
+        }
+    },
+
+    async updateCredentials(userId: string, data: any): Promise<Status> {
+        try {
+            const res = await apiConn.put(`api/user/update-credential/${userId}`, data);
+            return toStatus(res);
+        } catch (e) {
+            return toStatus(e.response)
+        }
+    },
+
     /**
      * Verify User Account
      * @param userId

@@ -6,7 +6,6 @@
                 style="grid-column: 1/2"
                 color="success"
                 width="100"
-                rounded
                 @click="dialogBox = true"
         >
           <v-icon>mdi-sticker-plus</v-icon>
@@ -14,13 +13,18 @@
         </v-btn>
       </template>
       <template v-slot:item-action="{ item }">
-        <v-btn x-small rounded color="red" @click="removeDivision(item)"> DELETE</v-btn>
+        <ActionButton
+                color="red"
+                @click="removeDivision(item)"
+        >Delete
+        </ActionButton>
       </template>
     </DataTable>
     <AddOffice
+            title="Add Divisional Office"
             :dialog="dialogBox"
             @submit="addNewDivision"
-            @close="dialogBox = false"
+            @cancel="dialogBox = false"
     />
   </v-container>
 </template>
@@ -28,11 +32,14 @@
 <script>
 import {mapState} from 'vuex'
 import AddOffice from "../../../components/app/dialogs/AddOffice";
-import DataTable from "../../../components/app/DataTable";
+import DataTable from "../../../components/app/data-table/DataTable";
+import {api} from "../../../api";
+import ActionButton from "../../../components/app/data-table/ActionButton";
 
 export default {
     name: "Division",
     components: {
+        ActionButton,
         DataTable,
         AddOffice
     },
@@ -62,15 +69,17 @@ export default {
             this.loading = true
             const status = await this.$store.dispatch('utils/addDivision', data)
             if (status.code !== 200) {
-                this.$store.commit('app/SHOW_MSG', {
-                    text: status.message,
-                    type: 'error'
-                })
+                this.$notify(status.message, "error")
             }
             this.loading = false
         },
-        removeDivision(item) {
-            console.log(item)
+        async removeDivision(item) {
+            const status = await this.$store.dispatch("utils/removeDivision", item)
+            if (status.code !== 200) {
+                this.$notify("Cannot remove divisional office", "error")
+                return
+            }
+            this.$notify("Divisional Office Removed", "success")
         }
     },
     computed: {

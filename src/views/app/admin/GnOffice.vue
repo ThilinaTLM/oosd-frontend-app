@@ -6,7 +6,6 @@
                 style="grid-column: 1/2"
                 color="success"
                 width="100"
-                rounded
                 @click="dialogBox = true"
         >
           <v-icon>mdi-sticker-plus</v-icon>
@@ -14,13 +13,18 @@
         </v-btn>
       </template>
       <template v-slot:item-action="{ item }">
-        <v-btn x-small rounded color="red" @click="removeGNOffice(item)">DELETE</v-btn>
+        <ActionButton
+                color="red"
+                @click="removeGNOffice(item)"
+        >Delete
+        </ActionButton>
       </template>
     </DataTable>
     <AddOffice
+            title="Add GN Office"
             :dialog="dialogBox"
             @submit="addNewGNOffice"
-            @close="dialogBox = false"
+            @cancel="dialogBox = false"
     />
   </v-container>
 </template>
@@ -28,11 +32,13 @@
 <script>
 import {mapState} from 'vuex'
 import AddOffice from "../../../components/app/dialogs/AddOffice";
-import DataTable from "../../../components/app/DataTable";
+import DataTable from "../../../components/app/data-table/DataTable";
+import ActionButton from "../../../components/app/data-table/ActionButton";
 
 export default {
     name: "GnOffice",
     components: {
+        ActionButton,
         DataTable,
         AddOffice
     },
@@ -66,16 +72,18 @@ export default {
             this.loading = true
             const status = await this.$store.dispatch('utils/addGNOffice', data)
             if (status.code !== 200) {
-                this.$store.commit('app/SHOW_MSG', {
-                    text: status.message,
-                    type: 'error'
-                })
+                this.$notify(status.message, "error")
             }
             this.loading = false
             this.dialogBox = false
         },
-        async removeGNOffice(office) {
-
+        async removeGNOffice(item) {
+            const status = await this.$store.dispatch("utils/removeGNOffice", item)
+            if (status.code !== 200) {
+                this.$notify("Cannot remove GN office", "error")
+                return
+            }
+            this.$notify("GN Office Removed", "success")
         }
     },
     computed: {

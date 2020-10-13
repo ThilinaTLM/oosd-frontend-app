@@ -102,7 +102,7 @@
                 return this.$store.getters["utils/getNameOnly_Divisions"]
             },
             roles() {
-                return this.$store.state.utils.roles
+                return this.$store.getters["utils/getNameOnly_UserRoles"]
             }
         },
         methods: {

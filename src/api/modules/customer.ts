@@ -21,6 +21,15 @@ export const customerApi = {
         }
     },
 
+    async getCustomerCount(): Promise<[number, Status]> {
+        try {
+            const res = await apiConn.get('api/customer/get-count')
+            return [res.data.data, toStatus(res)]
+        } catch (e) {
+            return [-1, toStatus(e.response)]
+        }
+    },
+
     async updateCustomer(customerId: string, customerData: any): Promise<Status> {
         try {
             const res = await apiConn.put(`api/customer/update-customer/${customerId}`, customerData)
@@ -28,5 +37,7 @@ export const customerApi = {
         } catch (e) {
             return toStatus(e.response)
         }
-    }
+    },
+
+
 }

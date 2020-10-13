@@ -15,9 +15,6 @@
                 color="orange"
             ><b> {{ referencenumber }} </b></v-chip>
 
-
-
-
         </v-card-title>
           <v-divider ></v-divider>
           <v-card-text class="pa-10">

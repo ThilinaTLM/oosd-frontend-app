@@ -15,8 +15,8 @@ export const fileApi = {
 
     async getAttachment(attachmentId: string): Promise<[any, Status]>  {
         try {
-            const res = await apiConn.get(`file/attachment/${attachmentId}`)
-            return [res.data.data, toStatus(res)]
+            const res = await apiConn.get_file(`file/attachment/${attachmentId}`)
+            return [res.data, toStatus(res)]
         } catch (e) {
             return ['', toStatus(e.response)]
         }

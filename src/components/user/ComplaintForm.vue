@@ -33,7 +33,7 @@
 
 <script>
 import {api} from "../../api";
-import CustomerDetails from "../complaint/CustomerDetails.vue";
+import CustomerDetails from "../complaint/new/CustomerDetails.vue";
 
 
 export default {

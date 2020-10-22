@@ -36,8 +36,8 @@
                 return this.$store.getters["user/isAuth"]
             }
         },
-        async beforeRouteEnter(from, to, next) {
-            await store.dispatch('user/loadLocalStorage')
+        beforeRouteEnter(from, to, next) {
+            store.dispatch('user/loadLocalStorage')
             next()
         }
     }

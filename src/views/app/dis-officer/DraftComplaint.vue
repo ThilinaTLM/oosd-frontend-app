@@ -3,6 +3,13 @@
     <DataTable :loading="loading" :items="complaints" :headers="headers">
       <template v-slot:item-action="{item}">
         <ActionButton
+                color="orange"
+                class="ma-1"
+                @click="$router.push({path: '/app/complaint/view/' + item.complaintId})"
+        >
+          View
+        </ActionButton>
+        <ActionButton
                 color="green"
                 class="ma-1"
                 v-if="!item.assignedDiv"
@@ -138,6 +145,9 @@ export default {
         const [complaintList, status] = await api.complaint.getComplaints({status: 'Draft'})
         if (status.code === 200) {
             this.complaints = complaintList
+            this.complaints.forEach(c => {
+                c.createdDate = new Date(c.createdDate).toLocaleDateString()
+            })
         } else {
             this.$notify("Something Wrong!", 'error')
         }

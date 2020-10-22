@@ -2,12 +2,12 @@
     <v-row class="content-center">
         <v-btn
                 v-bind:small="small"
-                dark
                 class="ma-2"
                 width="90%"
+                outlined
                 @click="logout"
         >
-            LOGOUT
+          <v-icon small >mdi-power</v-icon> <span class="ml-2" v-show="!mini">LOGOUT</span>
         </v-btn>
     </v-row>
 </template>
@@ -15,9 +15,13 @@
 <script>
     export default {
         name: "LogoutButton",
-        props: [
-            'small'
-        ],
+        props: {
+            small: Boolean,
+            mini: {
+                default: false,
+                type: Boolean
+            }
+        },
         methods: {
             async logout() {
                 await this.$store.dispatch('user/logout')

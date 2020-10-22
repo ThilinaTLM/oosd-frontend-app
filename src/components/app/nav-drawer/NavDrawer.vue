@@ -1,78 +1,73 @@
 <template>
-    <v-navigation-drawer
-            class="pa-2"
-            color="secondary"
-            v-model="toggle"
-            stateless
-            left
-            app
+  <v-navigation-drawer
+          class="pa-2"
+          color="secondary"
+          v-model="show"
+          stateless
+          left
+          app
+          mini-variant-width="73"
+          :mini-variant="!toggle"
+  >
+    <template v-slot:prepend>
+      <ProfileCard/>
+    </template>
+
+    <v-divider/>
+
+    <v-list
+            dense
+            nav
     >
-        <template v-slot:prepend>
-            <ProfileCard/>
-        </template>
+      <NavItem name="Dashboard" icon="mdi-view-dashboard" link="/app"/>
 
-        <v-divider />
+      <v-divider/>
 
-        <v-list
-                dense
-                nav
-        >
-            <NavItem name="Dashboard" icon="mdi-view-dashboard" link="/app"/>
+      <AdminNavItems v-if="role === 'Administrator'"/>
+      <DisOffNavItems v-else-if="role === 'District Officer'" />
+      <DisSecNavItems v-else-if="role === 'District Secretariat'" />
 
-            <v-divider />
+    </v-list>
 
-            <NavItem
-                    v-for="item in navItemData"
-                    :key="item.name"
-                    :name="item.name"
-                    :icon="item.icon"
-                    :link="item.link"
-            />
+    <template v-slot:append>
+      <div class="pa-2">
+        <LogoutButton small="true" :mini="!toggle" />
+      </div>
+    </template>
 
-        </v-list>
-
-            <template v-slot:append>
-                <div class="pa-2">
-                    <LogoutButton small/>
-                </div>
-            </template>
-
-    </v-navigation-drawer>
+  </v-navigation-drawer>
 </template>
 
 <script>
-    import ProfileCard from "../../user/ProfileCard";
-    import LogoutButton from "../../user/LogoutButton";
-    import NavItem from "./NavItem";
-    import { admin, dis_officer, dis_sec, div_officer, div_sec } from './nav-items'
+import ProfileCard from "../../user/ProfileCard";
+import LogoutButton from "../../user/LogoutButton";
+import NavItem from "./NavItem";
+import AdminNavItems from "./modules/AdminNavItems";
+import DisOffNavItems from "./modules/DisOffNavItems";
+import DisSecNavItems from "./modules/DisSecNavItems";
 
-    export default {
-        name: "NavDrawer",
-        components: {
-            NavItem,
-            ProfileCard,
-            LogoutButton
-        },
-        props: [
-            'toggle'
-        ],
-        computed: {
-            navItemData() {
-                switch (this.$store.state.user.userData.role) {
-                    case 'Administrator':
-                        return admin
-                    case 'District Officer':
-                        return dis_officer
-                    case 'District Secretariat':
-                        return dis_sec
-                    case 'Divisional Officer':
-                        return div_officer
-                    case 'Divisional Secretariat':
-                        return div_sec
-                }
-            }
+export default {
+    name: "NavDrawer",
+    components: {
+        DisSecNavItems,
+        DisOffNavItems,
+        AdminNavItems,
+        NavItem,
+        ProfileCard,
+        LogoutButton
+    },
+    props: [
+        'toggle'
+    ],
+    data: () => ({
+        show: true
+    }),
+    computed: {
+        role() {
+            return this.$store.getters["user/getRole"]
         }
     }
+}
 </script>
 
 <style scoped>

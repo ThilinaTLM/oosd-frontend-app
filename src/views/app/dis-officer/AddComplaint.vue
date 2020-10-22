@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import CustomerDetails from "../../../components/complaint/CustomerDetails";
-import ComplaintDetails from "../../../components/complaint/ComplaintDetails";
+import CustomerDetails from "../../../components/complaint/new/CustomerDetails";
+import ComplaintDetails from "../../../components/complaint/new/ComplaintDetails";
 import {api} from "../../../api";
-import UploadEvidences from "../../../components/complaint/UploadEvidences";
+import UploadEvidences from "../../../components/complaint/new/UploadEvidences";
 
 export default {
     name: "AddComplaint",

@@ -6,22 +6,30 @@ export interface UserState {
     token?: string
     userData: {
         userId?: string | null
-        role?: string
+        role: string
         firstName?: string
         lastName?: string
         email?: string
         telephoneNumber?: string
         office?: string
-    } | null
+    }
 }
 
 const state: UserState = {
-    userData: null
+    userData: {
+        role: ''
+    }
 }
 
 const getters: GetterTree<UserState, RootState> = {
     isAuth(state) {
-        return state.userData !== null
+        return state.userData.role != ''
+    },
+    getRole(state) {
+        if (state.userData && state.userData.role) {
+            return state.userData.role
+        }
+        return 'None'
     }
 }
 
@@ -31,7 +39,7 @@ const mutations: MutationTree<UserState> = {
     },
 
     CLEAR_USER_DATA: (state) => {
-        state.userData = null
+        state.userData = { role: ''}
     },
 
     SET_TOKEN(state, payload) {
@@ -43,43 +51,42 @@ export const actions: ActionTree<UserState, RootState> = {
     async login(store, payload) {
         const [data, status] = await api.user.login(payload.username, payload.password)
         if (status.code === 200) {
-            store.commit('SET_USER_DATA', data.userData)
-            store.commit('SET_TOKEN', data.token)
-            store.dispatch('setLocalStorage')
+            await store.commit('SET_USER_DATA', data.userData)
+            await store.commit('SET_TOKEN', data.token)
+            await store.dispatch('setLocalStorage')
             api.token.set(data.token)
         }
         return status
     },
 
-    loadLocalStorage(store) {
-        if (store.state.userData != null) {
-            return
+    async loadLocalStorage(store) {
+        if (store.state.userData.role != '') {
+            return;
         }
-
-        const token = localStorage.getItem('token')
-        const userData = localStorage.getItem('userData')
+        const token = await sessionStorage.getItem('token')
+        const userData = await sessionStorage.getItem('userData')
         if (token && userData) {
-            store.commit('SET_USER_DATA', JSON.parse(userData))
-            store.commit('SET_TOKEN', token)
+            await store.commit('SET_USER_DATA', JSON.parse(userData))
+            await store.commit('SET_TOKEN', token)
             api.token.set(token)
         } else {
-            localStorage.clear()
+            await sessionStorage.clear()
         }
     },
 
-    setLocalStorage(store) {
-        localStorage.clear()
+    async setLocalStorage(store) {
+        await sessionStorage.clear()
         const {token, userData} = store.state
         if (token && userData) {
-            localStorage.setItem('token', token)
-            localStorage.setItem('userData', JSON.stringify(userData))
+            await sessionStorage.setItem('token', token)
+            await sessionStorage.setItem('userData', JSON.stringify(userData))
         }
     },
 
     async logout(store) {
         store.commit('CLEAR_USER_DATA')
         api.token.remove()
-        localStorage.clear()
+        sessionStorage.clear()
     }
 }
 

@@ -25,6 +25,8 @@ class ApiConnection {
         {headers: {'Content-Type': 'multipart/form-data'}}
     )
 
+    get_file = (url: string) => this.conn.get(url, {responseType: "blob"})
+
     enableAuth(token: string) {
         this.conn.defaults.headers.Authorization = `Bearer ${token}`
     }

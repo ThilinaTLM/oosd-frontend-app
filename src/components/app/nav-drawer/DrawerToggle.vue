@@ -4,7 +4,7 @@
                small
                v-if="opened" @click="$emit('toggle', false); opened = false"
         >
-            <v-icon>mdi-close-circle</v-icon>
+            <v-icon>mdi-chevron-double-left</v-icon>
         </v-btn>
         <v-btn icon color="dark"
                small

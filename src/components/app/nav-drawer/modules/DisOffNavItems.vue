@@ -13,17 +13,22 @@
     <NavItem
             name="Approved"
             icon="mdi-file-certificate"
-            link=""
-    />
-    <NavItem
-            name="Processed"
-            icon="mdi-file-replace"
-            link=""
+            link="/app/complaint/approved"
     />
     <NavItem
             name="Reviewed"
             icon="mdi-file-check"
-            link=""
+            link="/app/complaint/reviewed"
+    />
+    <NavItem
+            name="Solved"
+            icon="mdi-file-check"
+            link="/app/complaint/solved"
+    />
+    <NavItem
+            name="Rejected"
+            icon="mdi-file-check"
+            link="/app/complaint/rejected"
     />
   </div>
 </template>

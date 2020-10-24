@@ -6,29 +6,36 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-              icon
-              small
+              x-small
+              color="green"
               v-bind="attrs"
               v-on="on"
       >
-        <v-icon>mdi-arrow-right-circle</v-icon>
+        <v-icon small>mdi-chevron-double-right</v-icon>
       </v-btn>
     </template>
 
-    <slot name="actions" style="display: grid; align-items: center" />
+    <div class="container">
+      <slot class="container"/>
+
+    </div>
 
   </v-menu>
 </template>
 
 <script>
 export default {
-    name: "ActionMenu",
-    props: [
-        'actions'
-    ]
+    name: "ActionMenu"
 }
 </script>
 
 <style scoped>
-
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    align-items: center;
+    background-color: #545863;
+    padding: 5px;
+}
 </style>

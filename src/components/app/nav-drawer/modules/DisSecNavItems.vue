@@ -3,12 +3,12 @@
     <NavItem
             name="Approve"
             icon="mdi-file-certificate"
-            link=""
+            link="/app/complaint/for-approve"
     />
     <NavItem
             name="Review"
             icon="mdi-file-certificate"
-            link=""
+            link="/app/complaint/for-review"
     />
   </div>
 </template>

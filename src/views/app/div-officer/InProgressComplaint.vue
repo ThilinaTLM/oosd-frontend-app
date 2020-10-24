@@ -13,26 +13,16 @@
           <ActionButton
                   color="green"
                   class="ma-1"
-                  v-if="!item.assignedDiv"
-                  @click="selectForAssign(item)"
+                  @click="selectForWriteLog(item)"
           >
-            Assign
+            Update
           </ActionButton>
           <ActionButton
-                  v-else
-                  color="blue"
+                  color="green"
                   class="ma-1"
-                  @click="selectForReassign(item)"
-          >
-            ReAssign
-          </ActionButton>
-          <ActionButton
-                  color="orange"
-                  class="ma-1"
-                  v-if="item.assignedDiv"
                   @click="selectForForward(item)"
           >
-            Forward
+            Finish
           </ActionButton>
           <ActionButton
                   color="red"
@@ -45,18 +35,20 @@
       </template>
     </DataTable>
 
-    <ChooseDivision
-            :show="dialogBoxAssign"
+    <WriteLog
+            title="Update Complaint Log"
+            :show="dialogBoxWriteLog"
             :ref-no="selectedComplaint.refNo"
+            :required="true"
             @cancel="cancelSelect"
-            @choose="submitDivision"
+            @ok="writeComplaintLog"
     />
     <WriteLog
-            title="Mark for Approval"
+            title="Mark As Completed"
             :show="dialogBoxForward"
             :ref-no="selectedComplaint.refNo"
             @cancel="cancelSelect"
-            @ok="markForApproval"
+            @ok="markForDivReview"
     />
     <WriteLog
             title="Reject Complaint"
@@ -71,18 +63,16 @@
 <script>
 import {api} from "../../../api";
 import DataTable from "../../../components/app/data-table/DataTable";
-import ChooseDivision from "../../../components/app/dialogs/ChooseDivision";
 import ActionButton from "../../../components/app/data-table/ActionButton";
 import ActionMenu from "../../../components/app/data-table/ActionMenu";
 import WriteLog from "../../../components/app/dialogs/WriteLog";
 
 export default {
-    name: "DraftComplaint",
+    name: "InProgressComplaint",
     components: {
         WriteLog,
         ActionMenu,
         ActionButton,
-        ChooseDivision,
         DataTable
     },
     data: () => ({
@@ -120,22 +110,15 @@ export default {
         ],
 
         complaints: [],
-        dialogBoxAssign: false,
-        dialogBoxForward: false,
-        dialogBoxReject: false,
         selectedComplaint: {},
-        selectFor: ''
+        dialogBoxWriteLog: false,
+        dialogBoxForward: false,
+        dialogBoxReject: false
     }),
     methods: {
-        selectForAssign(item) {
+        selectForWriteLog(item) {
             this.selectedComplaint = item
-            this.selectFor = 'assignDivision'
-            this.dialogBoxAssign = true
-        },
-        selectForReassign(item) {
-            this.selectedComplaint = item
-            this.selectFor = 'reassignDivision'
-            this.dialogBoxAssign = true
+            this.dialogBoxWriteLog = true
         },
         selectForForward(item) {
             this.selectedComplaint = item
@@ -147,34 +130,32 @@ export default {
         },
         cancelSelect() {
             this.selectedComplaint = {}
-            this.selectFor = ''
+            this.dialogBoxWriteLog = false
             this.dialogBoxForward = false
-            this.dialogBoxAssign = false
             this.dialogBoxReject = false
         },
-        async submitDivision(division) {
+        async writeComplaintLog(log) {
             this.loading = true
-            const status = await api.complaint[this.selectFor](this.selectedComplaint.complaintId, division)
+            const status = await api.complaint.writeLogEntry(this.selectedComplaint.complaintId, log)
             if (status.code !== 200) {
                 this.$notify(status.message, 'error')
                 this.loading = false
-                this.dialogBoxAssign = false
                 return
             }
-            this.$notify("Successfully assigned", 'success')
-            this.selectedComplaint.assignedDiv = division
-            this.dialogBoxAssign = false
+            this.$notify("Complaint log updated", 'success')
+            this.complaints = this.complaints.filter((c) => c.complaintId !== this.selectedComplaint.complaintId)
+            this.dialogBoxWriteLog = false
             this.loading = false
         },
-        async markForApproval(log) {
+        async markForDivReview(log) {
             this.loading = true
-            const status = await api.complaint.mark.markForApproval(this.selectedComplaint.complaintId, log)
+            const status = await api.complaint.mark.markForDivSecReview(this.selectedComplaint.complaintId, log)
             if (status.code !== 200) {
                 this.$notify(status.message, 'error')
                 this.loading = false
                 return
             }
-            this.$notify("Send to District Secretariat", 'success')
+            this.$notify("Send for Secretariat Review", 'success')
             this.complaints = this.complaints.filter((c) => c.complaintId !== this.selectedComplaint.complaintId)
             this.dialogBoxForward = false
             this.loading = false
@@ -195,7 +176,10 @@ export default {
     },
     async created() {
         this.loading = true
-        const [complaintList, status] = await api.complaint.getComplaints({status: 'Draft'})
+        const [complaintList, status] = await api.complaint.getComplaints({
+            status: 'In Progress',
+            assigned_div: this.$store.getters["user/getOffice"]
+        })
         if (status.code === 200) {
             this.complaints = complaintList
             this.complaints.forEach(c => {

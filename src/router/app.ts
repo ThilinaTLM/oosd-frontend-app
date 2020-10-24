@@ -26,6 +26,8 @@ export const appRoutes: Array<RouteConfig> = [
         name: 'UserAccounts',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/admin/UserList.vue')
     },
+
+    // District Officer
     {
         path: 'complaint/create-new',
         name: 'NewComplaint',
@@ -36,10 +38,60 @@ export const appRoutes: Array<RouteConfig> = [
         name: 'DraftComplaint',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-officer/DraftComplaint.vue')
     },
-    // {
-    //     path: 'complaint/view-complaint',
-    //     name:'ViewComplaint',
-    //     component: ()=> import(/* webpackChunkName: "web-app" */ '../views/app/Complaint.vue')
-    // }
+    {
+        path: 'complaint/approved',
+        name: 'ApprovedComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-officer/ApprovedComplaint.vue')
+    },
+    {
+        path: 'complaint/reviewed',
+        name: 'ReviewedComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-officer/ReviewedComplaint.vue')
+    },
+    {
+        path: 'complaint/solved',
+        name: 'SolvedComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-officer/SolvedComplaint.vue')
+    },
+    {
+        path: 'complaint/rejected',
+        name: 'RejectedComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-officer/RejectedComplaint.vue')
+    },
 
+    // District Secretariat
+    {
+        path: 'complaint/for-approve',
+        name: 'ApproveComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-sec/ApproveComplaint.vue')
+    },
+    {
+        path: 'complaint/for-review',
+        name: 'Dis-ReviewComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/dis-sec/ReviewComplaint.vue')
+    },
+
+    // Divisional Officer
+    {
+        path: 'complaint/for-accept',
+        name: 'AcceptComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/div-officer/AcceptComplaint.vue')
+    },
+    {
+        path: 'complaint/in-progress',
+        name: 'InProgress',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/div-officer/InProgressComplaint.vue')
+    },
+    {
+        path: 'complaint/div-reviewed',
+        name: 'Div-ReviewedComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/div-officer/DivReviewedComplaint.vue')
+    },
+
+    // Divisional Secretariat
+    {
+        path: 'complaint/for-div-review',
+        name: 'Div-ReviewComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/div-sec/DivReviewComplaint.vue')
+    }
 ]

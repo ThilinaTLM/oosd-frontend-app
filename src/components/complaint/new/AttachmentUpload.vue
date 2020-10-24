@@ -7,6 +7,7 @@
           dense
           hide-details
           outlined
+          label="Click for select a file"
           :disabled="uploaded"
           :append-icon="actionIcon"
           v-model="file"

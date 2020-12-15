@@ -2,16 +2,16 @@
   <v-app>
     <v-main class="bg2">
       <v-container
-          fluid
-          class="fill-height"
-          style="padding-left: 25%; padding-right: 25%"
+              fluid
+              class="fill-height"
+              style="padding-left: 20%; padding-right: 20%"
       >
-        <ComplaintForm />
+        <ComplaintForm/>
       </v-container>
 
     </v-main>
 
-    <HomeButton />
+    <HomeButton/>
 
   </v-app>
 </template>
@@ -23,11 +23,17 @@ import HomeButton from "../components/home/HomeButton";
 import ComplaintForm from "../components/user/ComplaintForm";
 
 export default {
-  name: "AddComplaint",
-  components: {
-    ComplaintForm,
-    HomeButton,
-  }
+    name: "AddComplaint",
+    components: {
+        ComplaintForm,
+        HomeButton,
+    },
+    async created() {
+        const status = await this.$store.dispatch('utils/loadAll')
+        if (status.code !== 200) {
+            this.$notify("Something Wrong!", "error")
+        }
+    }
 }
 </script>
 

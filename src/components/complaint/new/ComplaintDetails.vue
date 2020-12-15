@@ -17,6 +17,7 @@
       <v-col cols="1"/>
       <v-col cols="6" class="pa-0">
         <v-text-field
+                v-show="!directOnly"
                 prepend-inner-icon="mdi-card-bulleted"
                 label="Reference Number"
                 v-if="!complaintData.type.includes('Direct')"
@@ -95,7 +96,8 @@
 export default {
     name: "ComplaintDetails",
     props: [
-        'loading'
+        'loading',
+        'directOnly'
     ],
     data: () => ({
         valid: false,
@@ -111,7 +113,12 @@ export default {
     }),
     computed: {
         comTypes() {
-            return this.$store.getters["utils/getNameOnly_ComTypes"];
+            const types = this.$store.getters["utils/getNameOnly_ComTypes"]
+            if (this.directOnly) {
+                console.log(types)
+                return types.filter((t) => t.includes("Direct"))
+            }
+            return types;
         },
         divisions() {
             return this.$store.getters["utils/getNameOnly_Divisions"]

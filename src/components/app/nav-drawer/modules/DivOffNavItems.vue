@@ -7,7 +7,7 @@
     />
     <NavItem
             name="In Progress"
-            icon="mdi-file-document-edit"
+            icon="mdi-file-sync"
             link="/app/complaint/in-progress"
     />
     <NavItem

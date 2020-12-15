@@ -17,7 +17,7 @@
     />
     <NavItem
             name="Reviewed"
-            icon="mdi-file-check"
+            icon="mdi-file-eye"
             link="/app/complaint/reviewed"
     />
     <NavItem
@@ -27,7 +27,7 @@
     />
     <NavItem
             name="Rejected"
-            icon="mdi-file-check"
+            icon="mdi-file-remove"
             link="/app/complaint/rejected"
     />
   </div>

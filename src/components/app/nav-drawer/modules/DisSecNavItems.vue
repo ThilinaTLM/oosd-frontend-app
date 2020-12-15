@@ -7,7 +7,7 @@
     />
     <NavItem
             name="Review"
-            icon="mdi-file-certificate"
+            icon="mdi-file-eye"
             link="/app/complaint/for-review"
     />
   </div>

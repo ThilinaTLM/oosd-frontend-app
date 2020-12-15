@@ -1,8 +1,8 @@
 <template>
   <div>
     <NavItem
-            name="Add New"
-            icon="mdi-file-plus"
+            name="Review"
+            icon="mdi-file-eye"
             link="/app/complaint/for-div-review"
     />
   </div>

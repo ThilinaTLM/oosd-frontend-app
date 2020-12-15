@@ -16,9 +16,11 @@
       <div v-show="writeLog || required">
 
         <v-text-field
+                v-model="log.subject"
                 label="Subject"
         />
         <v-textarea
+                v-model="log.description"
                 label="Description"
                 filled
                 outlined
@@ -63,6 +65,7 @@ export default {
     methods: {
         ok() {
             if (this.writeLog || this.required) {
+                console.log(this.log)
                 this.$emit('ok', this.log)
             } else {
                 this.$emit('ok', undefined)

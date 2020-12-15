@@ -143,7 +143,6 @@ export default {
                 return
             }
             this.$notify("Complaint log updated", 'success')
-            this.complaints = this.complaints.filter((c) => c.complaintId !== this.selectedComplaint.complaintId)
             this.dialogBoxWriteLog = false
             this.loading = false
         },

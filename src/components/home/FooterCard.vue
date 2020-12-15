@@ -23,7 +23,7 @@
           
         >
        
-          <v-icon size="32px">{{ icon.name }}</v-icon>
+          <v-icon size="32px" color="black">{{ icon.name }}</v-icon>
         </v-btn>
         </a>
       </v-card-title>

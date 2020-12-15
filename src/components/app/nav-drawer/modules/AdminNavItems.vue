@@ -3,7 +3,7 @@
     <NavItem
             name="Find Complaint"
             icon="mdi-file-document-edit"
-            link=""
+            link="/app/complaint/find-complaint"
     />
     <NavItem
             name="User Account"

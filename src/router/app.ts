@@ -26,6 +26,11 @@ export const appRoutes: Array<RouteConfig> = [
         name: 'UserAccounts',
         component: () => import(/* webpackChunkName: "web-app" */ '../views/app/admin/UserList.vue')
     },
+    {
+        path: 'complaint/find-complaint',
+        name: 'FindComplaint',
+        component: () => import(/* webpackChunkName: "web-app" */ '../views/app/admin/AllComplaint.vue')
+    },
 
     // District Officer
     {

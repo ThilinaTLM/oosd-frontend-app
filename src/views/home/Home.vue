@@ -1,28 +1,6 @@
 <template>
     <v-app>
 
-        <!-- App bar -->
-
-
-        <!--          <v-app-bar-->
-        <!--              app-->
-        <!--              flat-->
-        <!--              color="primary"-->
-        <!--              width="75%"-->
-        <!--              align="center"-->
-        <!--            >-->
-
-        <!--             <HomeButton/>-->
-        <!--             <v-spacer/>-->
-        <!--             <v-toolbar-title class="ma-5 title"> {{ lang.header }} </v-toolbar-title>-->
-        <!--             <v-spacer/>-->
-        <!--             <LoginButton/><br>-->
-
-
-        <!--              <LanguageSelector @toggle="change" />-->
-
-        <!--          </v-app-bar>>-->
-
         <v-container class="pa-0" fluid style="display: flex; background: #FFC007; height: 130px  ">
 
             <v-container style="padding: 0px; width: content-box; max-width: 130px ">
@@ -84,7 +62,6 @@
                     fluid
                     style="height:560px; background-image: url('https://www.cesl.lk/images/projects/completed/Eight%20Storey%20District%20Secretariat%20Building%20at%20Galle_39_cesl.jpg'); background-size: cover"
                     class="fill-height"
-
             >
                 <v-spacer/>
                 <v-row style="justify-content: center">
@@ -108,29 +85,6 @@
                     </v-row>
                 </v-container>
             </v-container>
-
-            <!--            <v-spacer style="height: 50px"> </v-spacer>-->
-            <!--            &lt;!&ndash; About Us section &ndash;&gt;-->
-            <!--            <v-container fluid>-->
-
-            <!--            <v-container>-->
-
-            <!--            <v-row style="justify-content: center; padding: 35px">-->
-
-            <!--              <h3> About Grievance Management System </h3>-->
-            <!--            </v-row>-->
-
-            <!--              <v-row style="text-align: center">-->
-
-            <!--                <v-col>Welcome to Galle District Public Grievance Management System. This website is maintained by Galle District Secretariat & associated with 17 Divisional Secretariats. Our vision is to improve efficiency of public grievances handling to reduce delays and to improve customer experience. You can report your grievances directly to the relevant party, check the progress of reported grievances and can receive solutions faster via online. You can see the instructions on "How to do".</v-col>-->
-            <!--                <v-col><img src="src/assets/galle-office.jpg" alt=""> </v-col>-->
-
-            <!--              </v-row>-->
-
-            <!--            </v-container>-->
-            <!--            </v-container>-->
-
-            <!--            <v-spacer style="height: 50px"> </v-spacer>-->
 
             <!--            About Us Section-->
 
@@ -215,19 +169,13 @@
 
             <v-container fluid class="transparent pa-0">
                 <v-row no-gutters>
-
                     <v-col
                             cols="6"
                             md="4"
-
                     >
                         <v-card
-                                class="pa-12 pl-16 pr-16 ma-0"
-
+                                class="primary pa-12 pl-16 pr-16 ma-0"
                                 tile
-                                align="left"
-                                style=""
-
                         >
 
                             <v-card-title class="pa-0 pb-5"> {{ lang.associations }}</v-card-title>
@@ -235,8 +183,8 @@
 
                             <v-btn
                                     class="mx-1"
-                                    color="red"
-                                    style="color:white"
+                                    color="black"
+                                    outlined
                             >
                                 {{ lang.Galle }}
                             </v-btn>
@@ -244,24 +192,24 @@
                             <br>
                             {{ lang.division }}
                             <br> <br>
-                            <v-btn class="mx-1 associations" color="green"> {{ lang.Akmeemana }}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{ lang.Ambalangoda }}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Baddegama}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Balapitiya}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.BopePoddala}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Benthota}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Elpitiya}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.GalleFourGravets}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Habaraduwa}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Imaduwa}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Hikkaduwa}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Karandeniya}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Nagoda}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Neluwa}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Niyagama}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.WelivitiyaDivithura}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Yakkalamulla}}</v-btn>
-                            <v-btn class="mx-1 associations" color="green"> {{lang.Gonapinuwala}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{ lang.Akmeemana }}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{ lang.Ambalangoda }}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Baddegama}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Balapitiya}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.BopePoddala}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Benthota}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Elpitiya}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.GalleFourGravets}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Habaraduwa}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Imaduwa}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Hikkaduwa}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Karandeniya}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Nagoda}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Neluwa}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Niyagama}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.WelivitiyaDivithura}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Yakkalamulla}}</v-btn>
+                            <v-btn outlined class="mx-1 associations" color="black"> {{lang.Gonapinuwala}}</v-btn>
 
                         </v-card>
                     </v-col>
@@ -270,11 +218,11 @@
                             cols="12"
                             sm="6"
                             md="8"
-
+                            class="lighten-3 grey"
                     >
 
                         <v-row class="pt-5 pl-10 pr-10">
-                            <v-card class="pa-5">
+                            <v-card class="pa-5 lighten-1 secondary">
                                 <v-card-title>Tell The Galle GA</v-card-title>
                                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in dapibus lorem.
                                     Vestibulum consectetur rutrum massa, sed feugiat arcu tristique at. Etiam lacinia
@@ -286,7 +234,7 @@
                         </v-row>
 
                         <v-row class="pa-5 pl-10 pr-10">
-                            <v-card class="pa-5">
+                            <v-card class="pa-5 lighten-1 secondary">
                                 <v-card-title>Tell your Divisional Secretariat</v-card-title>
                                 <p> Sed condimentum ac mauris et commodo. Cras semper leo quis risus tempus, quis
                                     efficitur enim semper. Etiam quis velit at augue volutpat feugiat. Aliquam erat
@@ -303,54 +251,6 @@
 
                 </v-row>
             </v-container>
-
-
-            <!--            &lt;!&ndash; How to make a complaint to galle DS  &ndash;&gt;-->
-            <!--            <section class="section">-->
-            <!--                <v-container style="height:500px">-->
-            <!--                    <v-row style="align-content:center">-->
-            <!--                        <v-col>-->
-            <!--                            <v-row class="content" style="font-weight:bold">Tell the Grievance to Galle District-->
-            <!--                                Secretariat-->
-            <!--                            </v-row>-->
-            <!--                            <v-row class="content">-->
-
-            <!--                              {{ lang.section1 }}-->
-
-            <!--                            </v-row>-->
-            <!--                        </v-col>-->
-            <!--                        <v-col>-->
-            <!--                            <v-row class="content">sadsada</v-row>-->
-            <!--                        </v-col>-->
-            <!--                    </v-row>-->
-            <!--                </v-container>-->
-            <!--            </section>-->
-
-
-            <!--            &lt;!&ndash;  How to make a complaint to your divisional secretariat &ndash;&gt;-->
-            <!--            <section class="section">-->
-            <!--                <v-container style="height:500px;">-->
-            <!--                    <v-row style="align-content:center">-->
-            <!--                        <v-col>-->
-            <!--                            <v-row class="content">-->
-            <!--                                <img src="" alt="">-->
-            <!--                            </v-row>-->
-            <!--                        </v-col>-->
-            <!--                        <v-col>-->
-            <!--                            <v-row class="content" style="font-weight:bold">Tell the Grievance to Your Divisional-->
-            <!--                                Secretariat-->
-            <!--                            </v-row>-->
-            <!--                            <v-spacer/>-->
-            <!--                            <v-row class="content">-->
-
-            <!--                              {{ lang.section2 }}-->
-
-            <!--                            </v-row>-->
-            <!--                        </v-col>-->
-            <!--                    </v-row>-->
-            <!--                </v-container>-->
-            <!--            </section>-->
-
 
         </v-main>
 

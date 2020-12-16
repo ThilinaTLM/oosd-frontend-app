@@ -42,7 +42,7 @@
                 label="Email"
                 required
                 prepend-icon="mdi-email"
-                :rules="rules.noneEmpty"
+                :rules="rules.email"
                 :disabled="alreadyExists"
         ></v-text-field>
       </v-col>
@@ -156,6 +156,12 @@ export default {
             ],
             noneEmpty: [
                 s => s.length > 0 || "Too short"
+            ],
+            email: [
+                (email) => {
+                    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(String(email).toLowerCase());
+                }
             ]
         }
     }),

@@ -142,7 +142,7 @@ export default {
     },
     async created() {
         this.loading = true
-        const [complaintList, status] = await api.complaint.getComplaints({status: 'Awaiting Dis Review'})
+        const [complaintList, status] = await api.complaint.getComplaints({status: 'Awaiting Dis Sec Review'})
         if (status.code === 200) {
             this.complaints = complaintList
             this.complaints.forEach(c => {

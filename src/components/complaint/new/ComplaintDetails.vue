@@ -32,6 +32,7 @@
               label="Subject"
               required
               v-model="complaintData.subject"
+              :rules="[(s) => s.length > 20 || 'Subject is too short']"
       ></v-text-field>
 
     </v-row>
@@ -44,7 +45,7 @@
               outlined
               class="rounded-0"
               v-model="complaintData.description"
-
+              :rules="[(s) => s.length > 20 || 'Description is too short']"
       ></v-textarea>
     </v-row>
 
@@ -63,7 +64,6 @@
                 :items="divisions"
                 label="Select Divisional Secretariat Office"
         />
-
       </v-col>
     </v-row>
 
@@ -109,6 +109,11 @@ export default {
             type: '',
             refNo: '',
             assignedDiv: ''
+        },
+        rules: {
+            noneEmpty: [
+                s => s.length > 0 || "Too short"
+            ]
         }
     }),
     computed: {

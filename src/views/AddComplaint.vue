@@ -11,6 +11,7 @@
 
     </v-main>
 
+    <PopAlert />
     <HomeButton/>
 
   </v-app>
@@ -21,10 +22,12 @@
 
 import HomeButton from "../components/home/HomeButton";
 import ComplaintForm from "../components/user/ComplaintForm";
+import PopAlert from "../components/PopAlert";
 
 export default {
     name: "AddComplaint",
     components: {
+        PopAlert,
         ComplaintForm,
         HomeButton,
     },

@@ -39,7 +39,8 @@ export default {
             },
             {
                 text: 'Type',
-                value: 'type'
+                value: 'type',
+                width: 180
             },
             {
                 text: 'Date',
@@ -50,8 +51,8 @@ export default {
                 value: 'subject'
             },
             {
-                text: 'Division',
-                value: 'assignedDiv'
+                text: 'Status',
+                value: 'status'
             },
             {
                 text: 'Actions',

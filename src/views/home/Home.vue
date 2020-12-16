@@ -141,21 +141,21 @@
                 <v-row style="align-content: center">
                     <v-col>
                         <v-row class="stats values" style="padding:0px; margin:0px">
-                            <ProgressIndicator value="100" color="black" indeterminate=false />
+                            <ProgressIndicator :value="customerCount" color="black" indeterminate=false />
                         </v-row>
                         <v-row class="stats"> {{ lang.progressbar1 }}</v-row>
                     </v-col>
 
                     <v-col>
                         <v-row class="stats values" style="padding:0px; margin:0px">
-                            <ProgressIndicator value="75" color="red" indeterminate=false />
+                            <ProgressIndicator :value="inProgressCount" " color="red" indeterminate=false />
                         </v-row>
                         <v-row class="stats"> {{ lang.progressbar2 }}</v-row>
                     </v-col>
 
                     <v-col>
                         <v-row class="stats values" style="padding:0px; margin:0px">
-                            <ProgressIndicator value="25" color="green" indeterminate=false />
+                            <ProgressIndicator :value="solvedCount" color="green" indeterminate=false />
                         </v-row>
                         <v-row class="stats"> {{ lang.progressbar3 }}</v-row>
                     </v-col>
@@ -272,6 +272,7 @@
     import ProgressIndicator from "@/components/home/ProgressIndicator";
     import LanguageSelector from "@/components/home/LanguageSelector";
     import {SIN, EN} from "@/views/home/langs";
+    import {api} from "@/api";
 
     export default {
         name: "Home",
@@ -295,6 +296,9 @@
                 }
 
             ],
+            customerCount: 0,
+            inProgressCount: 0,
+            solvedCount: 0,
         }),
         computed: {
             lang() {
@@ -305,6 +309,16 @@
             change(lang) {
                 this.language = lang;
             }
+        },
+        async created() {
+            const [count1, status1] = await api.customer.getCustomerCount({});
+            if (status1.code === 200) this.customerCount = count1
+
+            const [count2, status2] = await api.complaint.getComplaintCount({status: 'In Progress'});
+            if (status2.code === 200) this.inProgressCount = count2
+
+            const [count3, status3] = await api.complaint.getComplaintCount({status: 'Solved'});
+            if (status3.code === 200) this.solvedCount = count3
         }
     };
 </script>

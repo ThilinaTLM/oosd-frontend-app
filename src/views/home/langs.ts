@@ -59,7 +59,7 @@ export const EN = {
     benefits1: `> Efficient Service`,
     benefits2: `> Realtime Progress Tracking`,
     benefits3: `> Solution via System & Email`,
-    progressbar1:`Registered Users`,
+    progressbar1:`Customers`,
     progressbar2:`In Progress`,
     progressbar3: `Problem Solved`,
     associations: `Associated Parties`,

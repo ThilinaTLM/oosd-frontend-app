@@ -23,7 +23,7 @@
                 label="Reference Number"
                 v-if="!complaintData.type.includes('Direct')"
                 v-model="complaintData.refNo"
-                :rules="[(s) => directOnly || s.length > 6 || 'Ref no should be 6 characters long']"
+                :rules="[(s) => directOnly || s.length >= 9 || 'Ref no should be 9 characters long']"
                 required
         ></v-text-field>
       </v-col>

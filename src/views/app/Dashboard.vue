@@ -277,6 +277,7 @@ export default {
             }
             this.tiles.push(tile)
             tile.count = await count(this.office)
+            if (tile.count === '?') this.$notify("Couldn't load some data", "warning")
             tile.loading = false
         }
     }

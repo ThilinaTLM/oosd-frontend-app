@@ -148,7 +148,7 @@
 
                     <v-col>
                         <v-row class="stats values" style="padding:0px; margin:0px">
-                            <ProgressIndicator :value="inProgressCount" " color="red" indeterminate=false />
+                            <ProgressIndicator :value="inProgressCount" color="red" indeterminate=false />
                         </v-row>
                         <v-row class="stats"> {{ lang.progressbar2 }}</v-row>
                     </v-col>

@@ -11,6 +11,7 @@
                 label="Complaint Type"
                 v-model="complaintData.type"
                 :items="comTypes"
+                :rules="[s => comTypes.includes(s) || 'Select complaint type']"
                 required
         ></v-select>
       </v-col>
@@ -22,6 +23,7 @@
                 label="Reference Number"
                 v-if="!complaintData.type.includes('Direct')"
                 v-model="complaintData.refNo"
+                :rules="[(s) => directOnly || s.length > 6 || 'Ref no should be 6 characters long']"
                 required
         ></v-text-field>
       </v-col>
@@ -32,7 +34,7 @@
               label="Subject"
               required
               v-model="complaintData.subject"
-              :rules="[(s) => s.length > 20 || 'Subject is too short']"
+              :rules="[(s) => (s.length > 10) || 'Subject is too short', (s) => (s.length < 100) || 'Subject is too long']"
       ></v-text-field>
 
     </v-row>
@@ -45,7 +47,7 @@
               outlined
               class="rounded-0"
               v-model="complaintData.description"
-              :rules="[(s) => s.length > 20 || 'Description is too short']"
+              :rules="[(s) => (s.length > 20 )|| 'Description is too short']"
       ></v-textarea>
     </v-row>
 
@@ -63,6 +65,7 @@
                 v-model="complaintData.assignedDiv"
                 :items="divisions"
                 label="Select Divisional Secretariat Office"
+                :rules="[s => !(specifyDivisionNow || divisionRequired) || divisions.includes(s) || 'Select divisional office']"
         />
       </v-col>
     </v-row>

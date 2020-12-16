@@ -55,7 +55,7 @@
                 label="Telephone"
                 required
                 prepend-icon="mdi-phone"
-                :rules="rules.noneEmpty"
+                :rules="[rules.telephone]"
                 :disabled="alreadyExists"
         ></v-text-field>
       </v-col>
@@ -99,7 +99,7 @@
       </v-col>
     </v-row>
 
-    <v-divider />
+    <v-divider/>
     <v-row class="mt-5">
 
       <v-btn
@@ -110,7 +110,7 @@
               :loading="loading"
               :disabled="!valid"
       >
-        {{submitButtonText}}
+        {{ submitButtonText }}
       </v-btn>
 
       <v-btn
@@ -157,10 +157,17 @@ export default {
             noneEmpty: [
                 s => s.length > 0 || "Too short"
             ],
+            telephone: [
+                s => s.length > 9 || "telephone number is too short",
+                s => {
+                    const re = /^[0-9]*$/
+                    return re.test(String(s).toLowerCase()) || "Invalid telephone number";
+                }
+            ],
             email: [
                 (email) => {
                     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    return re.test(String(email).toLowerCase()) || "invalid email format";
+                    return re.test(String(email).toLowerCase()) || "Invalid email address";
                 }
             ]
         }

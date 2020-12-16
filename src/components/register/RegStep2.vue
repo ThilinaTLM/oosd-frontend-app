@@ -36,9 +36,9 @@
             prepend-icon="mdi-phone"
             label="Telephone"
             type="text"
+            v-model="userData.telephoneNumber"
             :rules="rules.telephone"
             required
-            v-model="userData.telephoneNumber"
     ></v-text-field>
 
     <v-row>
@@ -104,11 +104,11 @@ export default {
         },
         rules: {
             telephone: [
-                s => s.length > 9 || "telephone number is too short",
                 s => {
-                    const re = /^[0-9]*$/
+                    const re = /^[+]{0,1}[0-9]*$/
                     return re.test(String(s).toLowerCase()) || "Invalid telephone number";
-                }
+                },
+                s => s.length > 9 || "telephone number is too short",
             ],
             email: [
                 (email) => {

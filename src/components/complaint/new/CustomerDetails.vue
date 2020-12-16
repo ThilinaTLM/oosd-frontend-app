@@ -55,7 +55,7 @@
                 label="Telephone"
                 required
                 prepend-icon="mdi-phone"
-                :rules="[rules.telephone]"
+                :rules="rules.telephone"
                 :disabled="alreadyExists"
         ></v-text-field>
       </v-col>
@@ -158,11 +158,11 @@ export default {
                 s => s.length > 0 || "Too short"
             ],
             telephone: [
-                s => s.length > 9 || "telephone number is too short",
                 s => {
-                    const re = /^[0-9]*$/
+                    const re = /^[+]{0,1}[0-9]*$/
                     return re.test(String(s).toLowerCase()) || "Invalid telephone number";
-                }
+                },
+                s => s.length > 9 || "telephone number is too short",
             ],
             email: [
                 (email) => {

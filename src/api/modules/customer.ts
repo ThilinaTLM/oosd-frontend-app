@@ -21,9 +21,9 @@ export const customerApi = {
         }
     },
 
-    async getCustomerCount(): Promise<[number, Status]> {
+    async getCustomerCount(condition: any): Promise<[number, Status]> {
         try {
-            const res = await apiConn.get('api/customer/get-count')
+            const res = await apiConn.get('api/customer/get-count', condition)
             return [res.data.data, toStatus(res)]
         } catch (e) {
             return [-1, toStatus(e.response)]

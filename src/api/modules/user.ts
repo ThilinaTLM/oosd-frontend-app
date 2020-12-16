@@ -59,6 +59,15 @@ export const userApi = {
         }
     },
 
+    async getUserCount(condition: any): Promise<[number, Status]> {
+        try {
+            const res = await apiConn.get('api/user/get-count', condition)
+            return [res.data.data, toStatus(res)]
+        } catch (e) {
+            return [-1, toStatus(e.response)]
+        }
+    },
+
     async updateUser(userId: string, data: any): Promise<Status> {
         try {
             const res = await apiConn.put(`api/user/update-user/${userId}`, data);

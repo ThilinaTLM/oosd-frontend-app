@@ -51,10 +51,10 @@
       left: 150px;
       top: 20px;
       font-size: 18pt;
-      color: #00000000;
+      color: #FF3A0050;
       /*-webkit-text-fill-color: white; !* Will override color (regardless of order) *!*/
       -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: black;
+      -webkit-text-stroke-color: #000000AA;
       letter-spacing: 1px;
   }
 </style>

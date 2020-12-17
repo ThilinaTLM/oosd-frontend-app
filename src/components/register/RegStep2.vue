@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid" ref="form" @submit.prevent="submit">
+  <v-form v-model="valid" ref="form" @submit.prevent="submit" lazy-validation>
     <v-row>
       <v-col>
         <v-text-field

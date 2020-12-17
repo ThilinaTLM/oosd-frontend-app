@@ -229,7 +229,6 @@
                 <ol>
                   <li> Click the red button “TELL THE GRIEVANCE”.</li>
                   <li> You have to accurately fill your own details in the first section.</li>
-                  <li> Choose your divisional secretariat and GN division.</li>
                   <li> Click the green colour “Submit” button.</li>
                   <li> Choose the complaint type as “Direct to District”.</li>
                   <li> Explain your grievance in subject and description.</li>
@@ -240,9 +239,6 @@
                   <li> Click the “Submit” button.</li>
                   <li> If you have any paper/ photo evidences, submit.</li>
                 </ol>
-                <p>
-                  The grievance will be recorded and you will get email notifications when the authorities take actions.
-                </p>
               </v-card>
             </v-row>
 
@@ -253,19 +249,14 @@
                   <li> Click the red button “TELL THE GRIEVANCE”.</li>
                   <li> You have to accurately fill your own details in the first section.</li>
                   <li> Choose your divisional secretariat and GN division.</li>
-                  <li> Click the green colour “Submit” button.</li>
                   <li> Choose the complaint type as “Direct to Division”.</li>
                   <li> Explain your grievance in subject and description.</li>
                   <li> If you want to report a problem that involves your divisional secretariat, tick the “Pre Assign
                     to a divisional secretariat office” and mention your divisional secretariat.
                   </li>
-                  <li> If you want to complain district secretariat only, just ignore the above part. (untick)</li>
                   <li> Click the “Submit” button.</li>
                   <li> If you have any paper/ photo evidences, submit.</li>
                 </ol>
-                <p>
-                  The grievance will be recorded and you will get email notifications when the authorities take actions.
-                </p>
               </v-card>
             </v-row>
 

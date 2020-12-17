@@ -1,5 +1,6 @@
 <template>
     <v-app>
+      <h1 class="page-header">Galle Public Grievance Management System</h1>
         <v-main class="bg2">
             <v-container
                     fluid
@@ -42,3 +43,18 @@
         }
     }
 </script>
+
+<style scoped>
+  .page-header {
+      position: absolute;
+      z-index: 100;
+      left: 150px;
+      top: 20px;
+      font-size: 18pt;
+      color: #00000000;
+      /*-webkit-text-fill-color: white; !* Will override color (regardless of order) *!*/
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: black;
+      letter-spacing: 1px;
+  }
+</style>

@@ -229,21 +229,24 @@
                                     dictum tortor nec bibendum. Maecenas congue orci non odio viverra accumsan.
                                     Suspendisse ornare iaculis mi at facilisis. Suspendisse congue dui id turpis
                                     bibendum, ut pellentesque nisi molestie. Duis interdum eros eros, eget faucibus urna
-                                    aliquet vitae</p>
+                                    aliquet vitae
+                                </p>
                             </v-card>
                         </v-row>
 
                         <v-row class="pa-5 pl-10 pr-10">
                             <v-card class="pa-5 lighten-1 secondary">
                                 <v-card-title>Tell your Divisional Secretariat</v-card-title>
-                                <p> Sed condimentum ac mauris et commodo. Cras semper leo quis risus tempus, quis
+                                <p>
+                                  Sed condimentum ac mauris et commodo. Cras semper leo quis risus tempus, quis
                                     efficitur enim semper. Etiam quis velit at augue volutpat feugiat. Aliquam erat
                                     odio, consequat sit amet lorem sit amet, bibendum egestas leo. Praesent nisi felis,
                                     convallis maximus sem sit amet, bibendum vehicula augue. Nunc pharetra purus ipsum.
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non sapien eget magna
                                     lobortis sollicitudin rhoncus sed nulla. Aliquam blandit massa quis orci dignissim,
                                     ut pharetra enim rutrum. Pellentesque hendrerit purus non mauris vulputate
-                                    facilisis. </p>
+                                    facilisis.
+                                </p>
                             </v-card>
                         </v-row>
 

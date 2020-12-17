@@ -163,6 +163,7 @@ export default {
                     return re.test(String(s).toLowerCase()) || "Invalid telephone number";
                 },
                 s => s.length > 9 || "telephone number is too short",
+                s => s.length < 14 || "telephone number is too long",
             ],
             email: [
                 (email) => {

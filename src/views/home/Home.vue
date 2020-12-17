@@ -173,6 +173,7 @@
           <v-col
                   cols="6"
                   md="4"
+                  class="pd-3"
           >
             <v-card
                     class="primary pa-12 pl-16 pr-16 ma-0"
@@ -248,7 +249,6 @@
                 <ol>
                   <li> Click the red button “TELL THE GRIEVANCE”.</li>
                   <li> You have to accurately fill your own details in the first section.</li>
-                  <li> Choose your divisional secretariat and GN division.</li>
                   <li> Choose the complaint type as “Direct to Division”.</li>
                   <li> Explain your grievance in subject and description.</li>
                   <li> If you want to report a problem that involves your divisional secretariat, tick the “Pre Assign

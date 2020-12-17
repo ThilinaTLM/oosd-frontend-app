@@ -57,7 +57,6 @@
                 prepend-icon="mdi-home-account"
                 label="Division"
                 :items="divisions"
-                :rules="[s => !userData.role.includes('Divisional') || roles.includes(s) || 'Select divisional office']"
                 v-model="userData.office"
         ></v-select>
       </v-col>
